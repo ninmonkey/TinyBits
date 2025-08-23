@@ -23,6 +23,7 @@ $error.clear()
 remove-variable 'jobs' -ea ignore
 remove-variable 'repoList' -ea ignore
 remove-variable 'finalJobs' -ea ignore
+remove-variable 'config' -ea ignore
 
 Import-Module Pansies -Global
 Import-Module ugit -Global # optional for the most part
@@ -80,7 +81,7 @@ foreach ($repo in $repoList) {
         Import-Module Pansies
         Import-Module ugit
         $params    = $Using:repo
-        $startTime = [Datetime]::Now
+        $innerStartTime = [Datetime]::Now
 
         "start => cloning: {0} => {1}" -f @( $params.Url, $params.Dest )
             | Write-Host -fg 'goldenrod'
@@ -90,7 +91,7 @@ foreach ($repo in $repoList) {
                 | Join-String -f "[skip] Clone already exists: {0}"
                 | Write-Host -fg '#aafebc'
 
-            $delta = [Datetime]::now - $startTime
+            $delta = [Datetime]::now - $innerStartTime
             $delta
                 | Join-String -p TotalMilliseconds -f '    time taken: {0:n0} ms'
                 | Write-Host -fg 'goldenrod'
@@ -115,7 +116,7 @@ foreach ($repo in $repoList) {
         "finished => {0}" -f @( $params.Url )
             | Write-Host -fg '#aafebc'
 
-        $delta = [Datetime]::now - $startTime
+        $delta = [Datetime]::now - $innerStartTime
         $delta
             | Join-String -p TotalMilliseconds -f '    time taken: {0:n0} ms'
             | Write-Host -fg 'goldenrod'
@@ -132,13 +133,13 @@ foreach ($repo in $repoList) {
 }
 Pop-Location -stack 'clone'
 
-$Config.EndTime = [datetime]::Now
 
 Wait-Job -Job $jobs | Out-Null
 
 $finalJobs = @( foreach ($job in $jobs) {
     Receive-Job -Job $job
 } ) # | Out-Null
+$Config.EndTime = [datetime]::Now
 
 # 'see: $jobs and $repoList'
 $finalJobs | Format-Table -auto
@@ -146,6 +147,6 @@ $finalJobs | Format-Table -auto
 Get-ChildItem -dir -path $Config.RootDest | Format-Table -auto
 Get-Variable 'jobs', 'repoList','finalJobs' | Format-Table -auto
 
-($Config.StartTime - $Config.EndTime)
+($Config.EndTime - $Config.StartTime)
     | Join-String TotalMilliseconds -f 'Total Duration: {0:n0} ms'
     | Write-Host -fg '#aafebc'
