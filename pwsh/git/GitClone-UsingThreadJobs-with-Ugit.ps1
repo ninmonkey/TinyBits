@@ -30,6 +30,8 @@ Import-Module ugit -Global # optional for the most part
 $Config = @{
     RootDest         = Get-Item -ea 'stop' 'G:\temp\cloneTest'
     AlwaysDeleteSome = $true
+    StartTime = [Datetime]::Now
+    EndTime = $Null
 }
 
 [List[Object]] $repoList = @(
@@ -130,7 +132,8 @@ foreach ($repo in $repoList) {
 }
 Pop-Location -stack 'clone'
 
-"Downloads started..." | Write-Host -fg 'gray70'
+$Config.EndTime = [datetime]::Now
+
 Wait-Job -Job $jobs | Out-Null
 
 $finalJobs = @( foreach ($job in $jobs) {
@@ -138,7 +141,11 @@ $finalJobs = @( foreach ($job in $jobs) {
 } ) # | Out-Null
 
 # 'see: $jobs and $repoList'
-$finalJobs | ft -auto
+$finalJobs | Format-Table -auto
 
-gci -dir -path $Config.RootDest | Ft -auto
-Get-Variable 'jobs', 'repoList','finalJobs' | ft -auto
+Get-ChildItem -dir -path $Config.RootDest | Format-Table -auto
+Get-Variable 'jobs', 'repoList','finalJobs' | Format-Table -auto
+
+($Config.StartTime - $Config.EndTime)
+    | Join-String TotalMilliseconds -f 'Total Duration: {0:n0} ms'
+    | Write-Host -fg '#aafebc'
