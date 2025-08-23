@@ -3,6 +3,10 @@
 <#
 .Synopsis
     Attempt cloning repos using ThreadJobs
+.Description
+    This
+    - writes streaming status updates to write-host
+    - writes object data to output stream, to capture by the caller
 .notes
     You may want to experiment with args like:
 
@@ -97,6 +101,7 @@ foreach ($repo in $repoList) {
                 | Write-Host -fg 'goldenrod'
 
             [pscustomobject]@{
+                PSTypeName = 'git.clone.threadjob.result'
                 Status     = 'Exists'
                 DurationMs = $delta | Join-String TotalMilliseconds -f '{0:n0}'
                 Dest       = $Params.Dest
@@ -121,24 +126,27 @@ foreach ($repo in $repoList) {
         "finished => {0}" -f @( $params.Url )
             | Write-Host -fg '#aafebc'
 
-        [Datetime]::now - $startTime
-            | Join-String -p TotalMilliseconds -f '    time taken: {0:n0} ms'
-            | Write-Host -fg 'goldenrod'
+        $delta = [Datetime]::now - $startTime
+
+        # $delta
+        #     | Join-String -p TotalMilliseconds -f '    time taken: {0:n0} ms'
+        #     | Write-Host -fg 'goldenrod'
 
         $deltaStr = [Datetime]::now - $startTime
                 | Join-String -p TotalMilliseconds -f '    time taken: {0:n0} ms'
 
-        $deltaStr
+        $delta
             | Join-String -p TotalMilliseconds -f '    time taken: {0:n0} ms'
             | Write-Host -fg 'goldenrod'
 
-        [pscustomobject]@{
-            Status = 'Cloned'
-            Dest = $Params.Dest
-            Url  = $Params.Url
-            Time = $deltaStr
-        }
 
+        [pscustomobject]@{
+            PSTypeName = 'git.clone.threadjob.result'
+            Status     = 'Cloned'
+            DurationMs = $delta | Join-String TotalMilliseconds -f '{0:n0}'
+            Dest       = $Params.Dest
+            Url        = $Params.Url
+        }
     } -StreamingHost $Host
 }
 popd -stack 'clone'
