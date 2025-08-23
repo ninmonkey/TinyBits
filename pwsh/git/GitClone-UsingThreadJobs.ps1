@@ -30,34 +30,49 @@ $RootDest = gi -ea 'stop' 'G:\temp\2025-06-30\cloney'
     @{
         Url = 'https://github.com/PowerShell/PowerShell'
         Dest = 'Pwsh'
-    }, @{
+    }
+    @{
         Url = 'https://github.com/PowerShellWeb/Turtle'
-        Dest = 'Pwsh'
-    }, @{
+        Dest = 'Turtle'
+    }
+    @{
         Url = 'https://github.com/microsoft/terminal'
         Dest = 'wt'
-    }, @{
-        Url = 'https://github.com/StartAutomating/PSSvg'
-        Dest = 'PSSvg'
-    }, @{
+    }
+    @{
         Url = 'https://github.com/StartAutomating/Irregular'
         Dest = 'regex'
+    }
+    @{
+        Url = 'https://github.com/StartAutomating/PSSvg'
+        Dest = 'PSSvg'
     }
 )
 
 if( $true ) {
-    # delete with show progress
-    gci -path $RootDest -Directory | %{ rmdir -Recurse -Force $_ }
-    'delete complete' | Write-host -fg 'goldenrod'
-}
-
-if($false ) {
-    'delete existing clones' | Write-Host -fg 'orange'
-    $repoList | %{
-        rm -force -recurse (Join-Path $RootDest $_.Dest) <# -ProgressAction silentlyContinue #>
-
+    # 'always delete some'
+    $rmSplat = @{
+        Recurse = $true
+        Force = $True
+        Ea = 'Ignore'
+        ProgressAction = 'Ignore'
     }
+    rmdir (join-path $RootDest 'Turtle') @rmSplat
+    rmdir (join-path $RootDest 'PSSvg') @rmSplat
 }
+# if( $false -and $true ) {
+#     # delete with show progress
+#     gci -path $RootDest -Directory | %{ rmdir -Recurse -Force $_ }
+#     'delete complete' | Write-host -fg 'goldenrod'
+# }
+
+# if($false ) {
+#     'delete existing clones' | Write-Host -fg 'orange'
+#     $repoList | %{
+#         rm -force -recurse (Join-Path $RootDest $_.Dest) <# -ProgressAction silentlyContinue #>
+
+#     }
+# }
 # rm -force -recurse -Confirm (Join-Path $RootDest 'Pwsh')
 # rm -force -recurse -Confirm (Join-Path $RootDest 'regex')
 # rm -force -recurse -Confirm (Join-Path $RootDest 'wt')
@@ -94,16 +109,23 @@ foreach ($repo in $repoList) {
             # return
         }
 
-        git clone $params.Url $params.Dest
-             | Write-Host -fg 'gray30' -bg 'gray10'
+        # which mode
+        git clone $params.Url $params.Dest --quiet
+            # | Out-Null
 
+        # git clone $params.Url $params.Dest --verbose # or --progress
+            # | Join-String -f "`n       stdout: {0}"
+            # | Write-Host -fg 'gray30' -bg 'gray10'
+
+
+
+        "finished => {0}" -f @( $params.Dest )
+            | Write-Host -fg '#aafebc'
 
         [Datetime]::now - $startTime
             | Join-String -p TotalMilliseconds -f '    time taken: {0:n0} ms'
             | Write-Host -fg 'goldenrod'
 
-        "finished => {0}" -f @( $params.Dest )
-            | Write-Host -fg '#aafebc'
     } -StreamingHost $Host
 }
 popd -stack 'clone'
