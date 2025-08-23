@@ -30,9 +30,9 @@ Import-Module ugit -Global # optional for the most part
 
 $Config = @{
     RootDest         = Get-Item -ea 'stop' 'G:\temp\cloneTest'
-    AlwaysDeleteSome = $true
-    StartTime = [Datetime]::Now
-    EndTime = $Null
+    AlwaysDeleteSome = $true # this deletes some repos for partial re-runs. disable for use
+    StartTime        = [Datetime]::Now
+    EndTime          = $Null
 }
 
 [List[Object]] $repoList = @(
@@ -132,8 +132,6 @@ foreach ($repo in $repoList) {
     } -StreamingHost $Host
 }
 Pop-Location -stack 'clone'
-
-
 Wait-Job -Job $jobs | Out-Null
 
 $finalJobs = @( foreach ($job in $jobs) {
@@ -141,10 +139,10 @@ $finalJobs = @( foreach ($job in $jobs) {
 } ) # | Out-Null
 $Config.EndTime = [datetime]::Now
 
+Get-ChildItem -dir -path $Config.RootDest | Format-Table -auto
 # 'see: $jobs and $repoList'
 $finalJobs | Format-Table -auto
 
-Get-ChildItem -dir -path $Config.RootDest | Format-Table -auto
 Get-Variable 'jobs', 'repoList','finalJobs' | Format-Table -auto
 
 ($Config.EndTime - $Config.StartTime)
