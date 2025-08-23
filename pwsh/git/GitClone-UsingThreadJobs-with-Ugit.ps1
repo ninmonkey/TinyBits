@@ -20,6 +20,7 @@ remove-variable 'jobs' -ea ignore
 remove-variable 'repoList' -ea ignore
 
 Import-Module Pansies -Global
+Import-Module ugit -Global
 
 $Config = @{
     RootDest = gi -ea 'stop' 'G:\temp\cloneTest'
@@ -72,6 +73,7 @@ pushd $Config.RootDest -stack 'clone'
 foreach ($repo in $repoList) {
     $jobs += Start-ThreadJob -Name $repo.Dest -ScriptBlock {
         Import-Module Pansies
+        Import-Module ugit
         $params = $Using:repo
         $startTime = [Datetime]::Now
 
@@ -87,15 +89,29 @@ foreach ($repo in $repoList) {
                 | Join-String -f "[skip] Clone already exists: {0}"
                 | Write-Host -fg '#aafebc'
 
-            [Datetime]::now - $startTime
+            $delta = ( [Datetime]::now ) - $startTime
+                #| Join-String -p TotalMilliseconds -f 'time taken: {0:n0} ms'
+
+            $delta
                 | Join-String -p TotalMilliseconds -f '    time taken: {0:n0} ms'
                 | Write-Host -fg 'goldenrod'
+
+            [pscustomobject]@{
+                Status     = 'Exists'
+                DurationMs = $delta | Join-String TotalMilliseconds -f '{0:n0}'
+                Dest       = $Params.Dest
+                Url        = $Params.Url
+            }
             return
             # return
         }
 
         # which mode
-        git clone $params.Url $params.Dest --quiet
+        # git clone $params.Url $params.Dest --quiet
+        git clone $params.Url $params.Dest # --quiet
+            | Join-String -f "  stdout => {0}"
+            | New-Text -fg '#f700ff' -bg 'gray20'
+            | Write-Host
             # | Out-Null
 
         # git clone $params.Url $params.Dest --verbose # or --progress
@@ -109,6 +125,20 @@ foreach ($repo in $repoList) {
             | Join-String -p TotalMilliseconds -f '    time taken: {0:n0} ms'
             | Write-Host -fg 'goldenrod'
 
+        $deltaStr = [Datetime]::now - $startTime
+                | Join-String -p TotalMilliseconds -f '    time taken: {0:n0} ms'
+
+        $deltaStr
+            | Join-String -p TotalMilliseconds -f '    time taken: {0:n0} ms'
+            | Write-Host -fg 'goldenrod'
+
+        [pscustomobject]@{
+            Status = 'Cloned'
+            Dest = $Params.Dest
+            Url  = $Params.Url
+            Time = $deltaStr
+        }
+
     } -StreamingHost $Host
 }
 popd -stack 'clone'
@@ -119,9 +149,10 @@ popd -stack 'clone'
 "Downloads started..." | Write-Host -fg 'gray70'
 Wait-Job -Job $jobs | Out-Null
 
-@( foreach ($job in $jobs) {
-    Receive-Job -Job $job
-} ) | Out-Null
+return
+$finalJobs = @( foreach ($job in $jobs) {
+    Receive-Job -Job $job -Keep
+} ) # | Out-Null
 
 # gci . -Dir
 
