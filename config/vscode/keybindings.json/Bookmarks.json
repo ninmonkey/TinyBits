@@ -1,0 +1,24 @@
+[
+    /*
+    extension: alefragnani.Bookmarks
+    url: https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks
+    */
+  {
+    "key": "ctrl+alt+l",
+    "command": "-bookmarks.jumpToNext",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+k",
+    "command": "-bookmarks.toggle",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+alt+k",
+    "command": "bookmarks.listFromAllFiles"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "bookmarks.toggle"
+  }
+]
