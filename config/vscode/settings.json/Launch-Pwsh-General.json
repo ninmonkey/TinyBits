@@ -1,0 +1,61 @@
+{
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "DebugHarness.ps1 🚀",
+                "type": "PowerShell",
+                "request": "launch",
+                "script": "${workspaceFolder}/debug_harness.ps1",
+                "cwd": "${workspaceFolder}",
+                "presentation": {
+                    "hidden": false,
+                    "group": "Invoke-Run",
+                    "order": 0
+                }
+            },
+            {
+                "name": "Main.ps1 🚀 -NoProfile -Temporary",
+                "type": "PowerShell",
+                "request": "launch",
+                "script": "${workspaceFolder}/Main.ps1",
+                "cwd": "${workspaceFolder}",
+                "presentation": {
+                    "hidden": false,
+                    "group": "Invoke-Run",
+                    "order": 0
+                },
+                "createTemporaryIntegratedConsole": true,
+                "args": [
+                    "-NoProfile",
+                    "-NoL"
+                ],
+                // "postDebugTask": {
+                //     "task": "",
+                //     "type": ""
+                // },
+            },
+            {
+                "name": "Pester🐜 => Invoke-Run",
+                "type": "PowerShell",
+                "request": "launch",
+                "script": "Invoke-Pester",
+                "args": [
+                    "-Configuration",
+                    "$PesterConfig"
+                ],
+                "presentation": {
+                    "hidden": false,
+                    "group": "Pester",
+                    "order": 1
+                },
+                // "args": [
+                //     "-Nop", "-NoLogo"
+                // ],
+                // "cwd": "${workspaceFolder}"
+                "cwd": "${file}" // else workspace
+            },
+        ],
+        "compounds": []
+    }
+}
