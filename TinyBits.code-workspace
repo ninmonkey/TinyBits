@@ -49,6 +49,9 @@
                 "fileMatch": [ "*/vscode/keybindings.json/*.json" ],
             },
         ],
+        "livePreview.autoRefreshPreview": "On All Changes in Editor",
+        // "livePreview.defaultPreviewPath": ""
+        "livePreview.previewDebounceDelay": 20,
     },
     "launch": {
         "version": "0.2.0",
