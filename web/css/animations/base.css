@@ -1,15 +1,15 @@
 :root {
-    /* font-family: 'Segoe ui', 'sans-serif';
-    font-size: 14px;
-    font-weight: 400; */
-}
+    /*
+        font-family: 'Segoe ui', 'sans-serif';
+        font-size: 14px;
+        font-weight: 400;
 
-/* :root {
-    --color-fg: green;
-    --bg: rgba(132, 96, 143, 0.459);
-    --bg: lightseagreen;
-    background-color: var(--bg);
-    color: var(--fg);
+        --color-fg: green;
+        --bg: rgba(132, 96, 143, 0.459);
+        --bg: lightseagreen;
+        background-color: var(--bg);
+        color: var(--fg);
+    */
 }
 
 section,
@@ -17,6 +17,20 @@ nav {
     color: var(--color-fg);
 }
 
-button {
+button {}
 
-} */
+*/
+
+/* Add your CSS styles here */
+:root {
+    --background-color: oklch(53.831% 0.14072 280.591 / 0.74);
+
+    font-family: 'cascadia code', 'Segoe UI', 'sans-serif';
+    text-shadow: 0 0 5px rgba(97, 97, 189, 0.726);
+    background-color: hsl(0.4turn 1% 50% / .4);
+    background-color: var(--background-color);
+}
+
+h1 {
+    --color-bg: hsla(256 45% 78% / 0.164);
+}
