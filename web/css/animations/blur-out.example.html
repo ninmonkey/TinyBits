@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Preview</title>
+    <link rel="stylesheet" href="./blur-out.css">
+</head>
+<body>
+    <style type="text/css">
+        .blur-out {
+            animation: blur-out 1200ms both infinite;
+        }
+        .blur-out-slow {
+            animation: blur-out 2000ms both infinite;
+        }
+        h1 {
+            animation: blur-out 700ms alternate infinite;
+        }
+    </style>
+    <section>
+        <h1>blur-out example</h1>
+        <div class="blur-out">This text will blur out</div>
+        <h1>blur-out example</h1>
+        <div class="blur-out-slow">This text will blur out</div>
+    </section>
+</body>
+</html>
