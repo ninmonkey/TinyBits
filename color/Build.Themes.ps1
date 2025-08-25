@@ -1,4 +1,5 @@
 ﻿using namespace System.Collections.Generic
+$error.clear()
 
 $BuildConfig = @{
     RepoRoot = ( $RepoRoot = Join-Path $PSScriptRoot '..') | Get-Item -ea 'stop'
@@ -24,19 +25,34 @@ function H1 {
         | Write-Host
 }
 
-# function NewThemeColorEntry {
-#     param(
-#         [object[]] $Colors
-#     )
-#     $out = @(
-#         '#e6e5e7', # src: https://bejamas.com/blog/minimalist-color-palette-and-typography-in-web-design
-#         '#b6b6d5',
-#         '#e9e3f1',
-#         '#757179',
-#         '#0e0f23'
-#     )
-#     $out
-# }
+function NewThemeColorEntry {
+    # Am I redundant now ?
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory, Position = 0)]
+        [Alias('List', 'Dict', 'Color')]
+        [object[]] $ColorList
+
+        # [Parameter(Mandatory, Position = 0, ParameterSetName = 'ByDict')]
+        # [Alias('Dict')]
+        # [hashtable] $ColorDict
+    )
+    $ByTextList = @( $ColorList )[0] -is [string]
+    if( $ByTextList )  {
+        return @(
+            $ColorList
+        )
+    } else {
+        return @(
+            $ColorDict.GetEnumerator() | ForEach-Object {
+                @{
+                    name  = $_.Key
+                    value = $_.Value
+                }
+            }
+        )
+    }
+}
 function NewThemeRecord {
     param(
         [string] $Name = 'none',
@@ -88,6 +104,10 @@ H1 '$OneTheme = '
 function BuildAllThemes {
     param()
     @(
+        NewThemeRecord -Name 'none' -Tags @('blue', 'dim') -Colors @(
+            @{ background = '#121212' }
+        )
+
         NewThemeRecord -Name 'none' -Tags @('blue', 'dim') -Colors @(
             '#e6e5e7', # src: https://bejamas.com/blog/minimalist-color-palette-and-typography-in-web-design
             '#b6b6d5',

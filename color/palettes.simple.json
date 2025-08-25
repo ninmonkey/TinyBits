@@ -1,7 +1,16 @@
 [
   {
     "name": "none",
-    "guid": "df0d184f-5ac7-447e-ac9b-807282f04867",
+    "guid": "348d79e4-b54a-4504-abc1-d86481b35d37",
+    "colors": [
+      {
+        "background": "#121212"
+      }
+    ]
+  },
+  {
+    "name": "none",
+    "guid": "878f8329-0618-49e0-8690-d534481ebc59",
     "colors": [
       "#e6e5e7",
       "#b6b6d5",
@@ -12,7 +21,7 @@
   },
   {
     "name": "none",
-    "guid": "2eb1f704-8135-4a0c-b407-80282fa750fd",
+    "guid": "17ed7629-221b-4336-ac77-f3796aa3036b",
     "colors": [
       "#f0f4f1",
       "#9da69f",
@@ -23,7 +32,7 @@
   },
   {
     "name": "none",
-    "guid": "286e2c63-f0dc-4724-94f8-dcf122d52b97",
+    "guid": "e2ca569f-43fe-4f7f-be23-bf314001a3da",
     "colors": [
       "#ddddb9",
       "#b8b3af",
@@ -34,7 +43,7 @@
   },
   {
     "name": "none",
-    "guid": "62651ff4-532e-4d85-bd87-b370b94492a7",
+    "guid": "f1bc2c22-dbd3-4486-8641-7952056b08d5",
     "colors": [
       "#dfe0ec",
       "#757179",
@@ -45,7 +54,7 @@
   },
   {
     "name": "none",
-    "guid": "1ac2d47b-9833-432a-8f54-4fb816a21b7e",
+    "guid": "bac76896-b580-40ce-9ac2-31c86d34e3a8",
     "colors": [
       "#d1d7d7",
       "#afa9b4",
@@ -56,7 +65,7 @@
   },
   {
     "name": "none",
-    "guid": "19586692-fd2a-40ac-9717-c7ed1ee28536",
+    "guid": "42bf8246-4f1a-4fca-bc03-a4ddf0b35cec",
     "colors": [
       "#bab4b8",
       "#391842",
@@ -67,7 +76,7 @@
   },
   {
     "name": "none",
-    "guid": "9027fb5e-d1b6-4fa3-a78c-1a68c6f67fe9",
+    "guid": "92969cdd-3282-47a8-9688-f46e903f6858",
     "colors": [
       "#ebeaec",
       "#9d9ba2",
@@ -78,7 +87,7 @@
   },
   {
     "name": "none",
-    "guid": "41ef0255-5379-4a8c-a71d-391e5468ee82",
+    "guid": "a52de487-4423-4e4b-9f91-975b4965af7a",
     "colors": [
       "#eaedf1",
       "#bcd1d2",
@@ -89,7 +98,7 @@
   },
   {
     "name": "none",
-    "guid": "1ff7c55d-da0f-4e92-b511-c42f3dbaf815",
+    "guid": "d4bc214f-ba7f-4527-9990-d9bee838c2a0",
     "colors": [
       "#eff0f9",
       "#c9ceec",
@@ -100,7 +109,7 @@
   },
   {
     "name": "none",
-    "guid": "ec18ce39-b5ce-44cb-b5c5-94d38bceccd7",
+    "guid": "87462786-dbda-49ce-8bb7-f81c6e5e60df",
     "colors": [
       "#caeecf",
       "#9bc8b8",
