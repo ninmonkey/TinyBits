@@ -8,6 +8,7 @@
          "files.associations": {
             "**/vscode/**/*.json": "jsonc",
             "**/*.json": "jsonc",
+            "**/vscode/snippets/*.json": "snippets",
             // "*.svg": "xml"
         },
         "workbench.editorAssociations": {
