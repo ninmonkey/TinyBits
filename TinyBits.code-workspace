@@ -48,4 +48,17 @@
             },
         ],
     },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "🚀 Build Themes.ps1",
+                "type": "PowerShell",
+                "request": "launch",
+                "script": "${workspaceFolder}/color/Build.Themes.ps1",
+                "cwd": "${workspaceFolder}"
+            }
+        ],
+        "compounds": []
+    }
 }

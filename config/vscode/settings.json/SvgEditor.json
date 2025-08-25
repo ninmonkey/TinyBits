@@ -10,6 +10,7 @@
     "svg.preview.transparencyGrid": true,
     "xml.fileAssociations": [
         {
+            // "systemId": "<missing>",
             "language": "xml",
             "pattern": "**/*.svg"
         }
