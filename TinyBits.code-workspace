@@ -4,5 +4,30 @@
 			"path": "."
 		}
     ],
-    "settings": {}
+    "settings": {
+		"explorer.fileNesting.patterns": {
+			"*.ts": "${capture}.js",
+			"*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+			"*.ps1": "${capture}.psx.ps1",
+			"*.jsx": "${capture}.js",
+			"*.tsx": "${capture}.ts",
+			"tsconfig.json": "tsconfig.*.json",
+			"package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock"
+		},
+		"files.associations": {
+			"**/vscode/**/*.json": "jsonc",
+			"**/*.json": "jsonc",
+			// "*/*.json": "jsonc",
+			// "**/*.json": "jsonc",
+			// "*.svg": "xml"
+		},
+
+		"workbench.editorAssociations": {
+			// "*.copilotmd": "vscode.markdown.preview.editor",
+			// "*.svg": "imagePreview.previewEditor",
+			// "*.svg": "default",
+			
+		}
+		
+	},
 }

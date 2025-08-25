@@ -1,0 +1,67 @@
+/*
+    extension: ms-vscode.powershell
+    url: https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell
+*/
+[
+
+  {
+    "key": "ctrl+shift+c",
+    "command": "PowerShell.ShowAdditionalCommands",
+    "when": "editorLangId == 'powershell'"
+  },
+  {
+    "key": "capslock",
+    "command": "workbench.action.showCommands",
+    "when": "editorTextFocus"
+  },
+  /*
+  ### 📌 Section: override defaults with standard functions */
+  {
+    "key": "ctrl+alt+j",
+    "command": "editor.action.insertSnippet",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "-bookmarks.jumpToNext",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+k",
+    "command": "-bookmarks.toggle",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+alt+k",
+    "command": "bookmarks.listFromAllFiles"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "bookmarks.toggle"
+  }
+  /*
+  ### 📌 Section: system originals
+  original:
+      {
+      "key": "tab",
+      "command": "insertSnippet",
+      "when": "editorTextFocus && hasSnippetCompletions && !editorTabMovesFocus && !inSnippetMode"
+    } 
+ 
+  {
+    "key": "ctrl+alt+j",
+    "command": "editor.action.insertSnippet",
+    "when": "editorTextFocus && !editorReadonly && editorLangId == 'powershell'"
+  }
+     */
+  /* remove bind 
+  {
+    "key": "ctrl+shift+alt+j",
+    "command": "code-runner.runByLanguage"
+  },
+  {
+    "key": "ctrl+alt+j",
+    "command": "-code-runner.runByLanguage"
+  }
+  */
+]
