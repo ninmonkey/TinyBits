@@ -1,0 +1,60 @@
+@keyframes spin-single {
+    from {
+
+        transform: rotate(0turn);
+        perspective-origin: 500% 200%;
+
+    }
+
+    to {
+        transform: rotate(1turn);
+        /* rotate: 3 0.5 2 45deg; */
+    }
+}
+
+@keyframes spin-single-with-perspective {
+    from {
+        transform: rotate(0turn);
+        perspective: 300px;
+    }
+
+    to {
+        transform: rotate(1turn);
+        perspective: 700px;
+    }
+}
+
+@keyframes spin-single-with-perspective-2 {
+    from {
+        transform: rotate(0turn);
+        perspective: 300px;
+        transform-origin: 0% 0%;
+    }
+
+    to {
+        transform: rotate(1turn);
+        perspective: 700px;
+        transform-origin: 50% 50%;
+    }
+}
+
+@keyframes spin-horizontal-text {
+    from {
+        text-shadow: 0 0 5px rgba(97, 97, 189, 0.726);
+        transform: rotateY(-.1turn);
+    }
+
+    30% {
+        transform: rotateY(0);
+    }
+
+    60% {
+        transform: rotateY(0.3turn);
+    }
+
+    to {
+        text-shadow: 0 0 20px rgb(97, 97, 189);
+        /* transform: rotate( 0.3turn, 0.4turn, 0.5turn ); */
+        transform: rotateY(0turn);
+    }
+}

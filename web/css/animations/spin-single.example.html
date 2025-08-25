@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Preview: spin-single</title>
+    <link rel="stylesheet" href="./base.css">
+    <link rel="stylesheet" href="./spin-single.css">
+</head>
+<style type="text/css">
+    .spin-single {
+        animation: spin-single-with-perspective 1200ms both infinite;
+        color: red;
+    }
+    .spin-horizontal {
+        animation: spin-horizontal-text 3s both infinite;
+        color: green;
+    }
+
+    .spin-single-slow {
+        animation: spin-single-with-perspective 2000ms both infinite;
+        color: orange;
+    }
+
+    h1 {
+        animation: spin-single 700ms alternate infinite;
+        color: blue;
+    }
+    button {
+        animation: spin-horizontal-text 3s both infinite;
+    }
+    /* section {
+        animation: spin-horizontal-text 3s both infinite;
+    } */
+</style>
+<section>
+    <nav>
+        <ul>
+            <li>
+                <a href=".">Go Back ⮥</a>
+            </li>
+            <!-- <li>
+                <a href="#" id="cmd-style-1">spin-single-with-perspective</a> (from center)
+            </li> -->
+                <!--
+                <li>
+                <a href="#" id="cmd-style-2">spin-single-with-perspective-2</a> (boomerang)
+                </li>
+                -->
+        </ul>
+    </nav>
+    </section>
+        <section id="cmd-bar">
+
+        <button id="cmd-style-2">spin-single-with-perspective</button> (boomerang)
+        <button id="cmd-style-1">spin-single-with-perspective</button> (from center)
+    </section>
+
+    <script type="module">
+        const lines = document.querySelectorAll( '#main .spin-single' )
+        Array.from( lines ).forEach( line => {
+            // line.style.opacity = '0.3'
+            line.style.animationDelay = `${ Math.random() * 1.3 }s`;
+        } )
+
+        document.getElementById('cmd-style-1').addEventListener('click', () => {
+            Array.from( lines ).forEach( line => {
+                line.style.animationName = 'spin-single-with-perspective'
+            } )
+        })
+        document.getElementById('cmd-style-2').addEventListener('click', () => {
+            Array.from( lines ).forEach( line => {
+                line.style.animationName = 'spin-single-with-perspective-2'
+            } )
+        })
+    </script>
+    <section id="main">
+        <h1>single-out example</h1>
+        <div class="spin-single">This text will single out</div>
+        <div class="spin-horizontal">This text will single out</div>
+        <div class="spin-single">This text will single out</div>
+        <div class="spin-single">This text will single out</div>
+        <div class="spin-single">This text will single out</div>
+        <div class="spin-single-slow">This text will single out</div>
+        <div class="spin-horizontal">This text will single out</div>
+        <div class="spin-single">This text will single out</div>
+        <div class="spin-single">This text will single out</div>
+        <div class="spin-single-slow">This text will single out</div>
+        <div class="spin-single">This text will single out</div>
+        <div class="spin-single">This text will single out</div>
+        <div class="spin-single">This text will single out</div>
+        <h1>single-out example</h1>
+        <div class="spin-single-slow">This text will single out</div>
+    </section>
+</body>
+
+</html>
