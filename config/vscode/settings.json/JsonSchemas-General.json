@@ -1,0 +1,19 @@
+{
+    "json.schemas": [
+        // see docs: https://code.visualstudio.com/docs/languages/json#_use-rich-formatting-in-hovers
+        {
+            "url": "vscode://schemas/global-snippets",
+            "fileMatch": [
+                "code-snippets"
+            ],
+        },
+        // windows terminal schema: <https://github.com/microsoft/terminal/blob/main/doc/cascadia/profiles.schema.json>
+        {
+            "url": "vscode://schemas/settings/user",
+            "fileMatch": [
+                "*/dotfiles.2023/vscode/profiles/desktop-main/settings.json"
+            ],
+        },
+        // schema name came from here <https://github.com/microsoft/vscode/blob/e5e9a6556e8dd4f5c60074b0a9466be4b490ac29/src/vs/workbench/contrib/snippets/browser/snippets.contribution.ts#L100C1-L100C1>
+    ],
+}

@@ -1,17 +1,29 @@
 {
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
-  "[javascript]": {
-    "editor.indentSize": "tabSize",
-    "editor.tabSize": 4,
-    "prettier.tabWidth": 4,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "workbench.editorAssociations": {
-    "*.svg": "default"
-  }
+    /*
+    description: Settings that help to preview svg images while editing them in the text editor (with some js)
+    */
+    "workbench.editorAssociations": {
+        "*.svg": "default"
+    },
+    "svg.preview.boundingBox": false,
+    "svg.preview.autoOpen": true,
+    "svg.preview.transparencyGrid": true,
+    "xml.fileAssociations": [
+        {
+            "language": "xml",
+            "pattern": "**/*.svg"
+        }
+    ],
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[javascript]": {
+        "editor.indentSize": "tabSize",
+        "editor.tabSize": 4,
+        "prettier.tabWidth": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 }

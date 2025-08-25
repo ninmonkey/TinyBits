@@ -1,0 +1,80 @@
+{
+    "json.schemas": [
+        // see docs: https://code.visualstudio.com/docs/languages/json#_use-rich-formatting-in-hovers
+        {
+            "url": "vscode://schemas/global-snippets",
+            "fileMatch": [
+                "code-snippets"
+            ],
+        },
+        // schema name came from here <https://github.com/microsoft/vscode/blob/e5e9a6556e8dd4f5c60074b0a9466be4b490ac29/src/vs/workbench/contrib/snippets/browser/snippets.contribution.ts#L100C1-L100C1>
+        /*
+         json.schemas: for power bi (added: 2024-03-28)
+            where to find schemas
+                - [1] https://github.com/microsoft/powerbi-desktop-samples/tree/main/item-schemas
+                - [2] https://github.com/microsoft/powerbi-desktop-samples/tree/main/Report%20Theme%20JSON%20Schema
+
+            More links related to PBIR/PBIP/tmdl and schemas
+
+                - June 2024: https://powerbi.microsoft.com/en-us/blog/power-bi-enhanced-report-format-pbir-in-power-bi-desktop-developer-mode-preview/
+                - https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-report
+                - https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-overview
+        */
+        {
+            "fileMatch": [
+                "*.pbidataset"
+            ],
+            "url": "https://raw.githubusercontent.com/microsoft/powerbi-desktop-samples/main/item-schemas/dataset/definition.pbidataset-1.0.json"
+        },
+        {
+            "fileMatch": [
+                "/*.Dataset/.pbi/editorSettings.json"
+            ],
+            "url": "https://raw.githubusercontent.com/microsoft/powerbi-desktop-samples/main/item-schemas/dataset/editorSettings-1.0.json"
+        },
+        {
+            "fileMatch": [
+                "/*.Dataset/.pbi/localsettings.json"
+            ],
+            "url": "https://raw.githubusercontent.com/microsoft/powerbi-desktop-samples/main/item-schemas/dataset/localSettings-1.0.json"
+        },
+        {
+            "fileMatch": [
+                "/*.Dataset/.pbi/unappliedchanges.json"
+            ],
+            "url": "https://raw.githubusercontent.com/microsoft/powerbi-desktop-samples/main/item-schemas/dataset/unappliedChanges-1.0.json"
+        },
+        {
+            "fileMatch": [
+                "*.pbir"
+            ],
+            "url": "https://raw.githubusercontent.com/microsoft/powerbi-desktop-samples/main/item-schemas/report/definition.pbir-1.0.json"
+        },
+        {
+            "fileMatch": [
+                "/*.Report/.pbi/localsettings.json"
+            ],
+            "url": "https://raw.githubusercontent.com/microsoft/powerbi-desktop-samples/main/item-schemas/report/localSettings-1.0.json"
+        },
+        {
+            "fileMatch": [
+                "*.pbip"
+            ],
+            "url": "https://raw.githubusercontent.com/microsoft/powerbi-desktop-samples/main/item-schemas/common/pbip-1.0.json"
+        },
+        {
+            "fileMatch": [
+                "/*.Report/item.config.json",
+                "/*.Dataset/item.config.json"
+            ],
+            "url": "https://raw.githubusercontent.com/microsoft/powerbi-desktop-samples/main/item-schemas/common/item.config-1.0.json"
+        },
+        {
+            "fileMatch": [
+                "/*.Report/item.metadata.json",
+                "/*.Dataset/item.metadata.json"
+            ],
+            "url": "https://raw.githubusercontent.com/microsoft/powerbi-desktop-samples/main/item-schemas/common/item.metadata-1.0.json"
+        }
+    ],
+}
