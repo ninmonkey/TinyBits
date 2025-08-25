@@ -1,9 +1,135 @@
 {
-    "about": "simple list of color palettes/themes",
-    "themes": [
-        {
-            "name": "None"
-        }
-    ]
-
+  "themes": [
+    {
+      "colors": [
+        "#e6e5e7",
+        "#b6b6d5",
+        "#e9e3f1",
+        "#757179",
+        "#0e0f23"
+      ],
+      "about": "src: https://bejamas.com/blog/minimalist-color-palette-and-typography-in-web-design",
+      "tags": [],
+      "name": "none",
+      "guid": "df0d184f-5ac7-447e-ac9b-807282f04867"
+    },
+    {
+      "colors": [
+        "#f0f4f1",
+        "#9da69f",
+        "#5d5d56",
+        "#c5cdc7",
+        "#383b39"
+      ],
+      "about": "src: https://bejamas.com/blog/minimalist-color-palette-and-typography-in-web-design",
+      "tags": [],
+      "name": "none",
+      "guid": "2eb1f704-8135-4a0c-b407-80282fa750fd"
+    },
+    {
+      "colors": [
+        "#ddddb9",
+        "#b8b3af",
+        "#9c7978",
+        "#c5b099",
+        "#14140d"
+      ],
+      "about": "src: https://bejamas.com/blog/minimalist-color-palette-and-typography-in-web-design",
+      "tags": [],
+      "name": "none",
+      "guid": "286e2c63-f0dc-4724-94f8-dcf122d52b97"
+    },
+    {
+      "colors": [
+        "#dfe0ec",
+        "#757179",
+        "#4d274e",
+        "#27284e",
+        "#170d21"
+      ],
+      "about": "src: https://bejamas.com/blog/minimalist-color-palette-and-typography-in-web-design",
+      "tags": [],
+      "name": "none",
+      "guid": "62651ff4-532e-4d85-bd87-b370b94492a7"
+    },
+    {
+      "colors": [
+        "#d1d7d7",
+        "#afa9b4",
+        "#d7d1d1",
+        "#aaafaf",
+        "#424341"
+      ],
+      "about": "src: https://bejamas.com/blog/minimalist-color-palette-and-typography-in-web-design",
+      "tags": [],
+      "name": "none",
+      "guid": "1ac2d47b-9833-432a-8f54-4fb816a21b7e"
+    },
+    {
+      "colors": [
+        "#bab4b8",
+        "#391842",
+        "#732f3e",
+        "#451938",
+        "#200819"
+      ],
+      "about": "src: https://bejamas.com/blog/minimalist-color-palette-and-typography-in-web-design",
+      "tags": [],
+      "name": "none",
+      "guid": "19586692-fd2a-40ac-9717-c7ed1ee28536"
+    },
+    {
+      "colors": [
+        "#ebeaec",
+        "#9d9ba2",
+        "#55535b",
+        "#3c313d",
+        "#18141d"
+      ],
+      "about": "src: https://bejamas.com/blog/minimalist-color-palette-and-typography-in-web-design",
+      "tags": [],
+      "name": "none",
+      "guid": "9027fb5e-d1b6-4fa3-a78c-1a68c6f67fe9"
+    },
+    {
+      "colors": [
+        "#eaedf1",
+        "#bcd1d2",
+        "#a2a7a7",
+        "#55605b",
+        "#1f181c"
+      ],
+      "about": "src: https://bejamas.com/blog/minimalist-color-palette-and-typography-in-web-design",
+      "tags": [],
+      "name": "none",
+      "guid": "41ef0255-5379-4a8c-a71d-391e5468ee82"
+    },
+    {
+      "colors": [
+        "#eff0f9",
+        "#c9ceec",
+        "#e1e2e3",
+        "#2d3a6e",
+        "#051319"
+      ],
+      "about": "src: https://bejamas.com/blog/minimalist-color-palette-and-typography-in-web-design",
+      "tags": [],
+      "name": "none",
+      "guid": "1ff7c55d-da0f-4e92-b511-c42f3dbaf815"
+    },
+    {
+      "colors": [
+        "#caeecf",
+        "#9bc8b8",
+        "#5d796f",
+        "#7ca081",
+        "#2a3326"
+      ],
+      "about": "src: https://bejamas.com/blog/minimalist-color-palette-and-typography-in-web-design",
+      "tags": [],
+      "name": "none",
+      "guid": "ec18ce39-b5ce-44cb-b5c5-94d38bceccd7"
+    }
+  ],
+  "about": "simple list of color palettes/themes"
 }
