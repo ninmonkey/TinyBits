@@ -104,9 +104,34 @@ H1 '$OneTheme = '
 function BuildAllThemes {
     param()
     @(
-        NewThemeRecord -Name 'none' -Tags @('blue', 'dim') -Colors @(
-            @{ background = '#121212' }
-        )
+        NewThemeRecord -Name 'none' -Tags @('blue', 'dim', 'dark' ) -Colors @(
+            '#0a2239' # oxford blue
+            '#176087' # lap's lazuili
+            '#1d84b5' # blue (NCS)
+            '#c7dfc5' # tea green
+            '#a37774' # old rose
+
+        ) -about 'self'
+
+        NewThemeRecord -Name 'none' -Tags @('gray', 'basic' ) -Colors @(
+            @{
+                bg     = '#121212'
+                fg     = '#e0e0e0'
+                'fg-2' = '#b0b0b0'
+                border = '#444444'
+                accent = '#888888'
+            }
+        ) -about 'src: https://www.vev.design/blog/dark-mode-website-color-palette/'
+
+        NewThemeRecord -Name 'none' -Tags @('pastel', 'dim' ) -Colors @(
+            @{
+                bg         = '#2c2c2c'
+                fg         = '#e4e4e4'
+                accent     = '#a8dadc'
+                'accent-2' = '#ffc1cc'
+                button     = '#b39cd0'
+            }
+        ) -about 'src: https://www.vev.design/blog/dark-mode-website-color-palette/'
 
         NewThemeRecord -Name 'none' -Tags @('blue', 'dim') -Colors @(
             '#e6e5e7', # src: https://bejamas.com/blog/minimalist-color-palette-and-typography-in-web-design

@@ -1,16 +1,44 @@
 [
   {
     "name": "none",
-    "guid": "348d79e4-b54a-4504-abc1-d86481b35d37",
+    "guid": "78142c0b-7d0b-420c-9eb4-a2518e9b533a",
+    "colors": [
+      "#0a2239",
+      "#176087",
+      "#1d84b5",
+      "#c7dfc5",
+      "#a37774"
+    ]
+  },
+  {
+    "name": "none",
+    "guid": "75bf484b-14ee-4a6e-a1d0-8f67aa3ce658",
     "colors": [
       {
-        "background": "#121212"
+        "accent": "#888888",
+        "bg": "#121212",
+        "fg": "#e0e0e0",
+        "fg-2": "#b0b0b0",
+        "border": "#444444"
       }
     ]
   },
   {
     "name": "none",
-    "guid": "878f8329-0618-49e0-8690-d534481ebc59",
+    "guid": "5949fbd3-ceb5-4fe4-a06b-3de30003e880",
+    "colors": [
+      {
+        "accent": "#a8dadc",
+        "bg": "#2c2c2c",
+        "fg": "#e4e4e4",
+        "accent-2": "#ffc1cc",
+        "button": "#b39cd0"
+      }
+    ]
+  },
+  {
+    "name": "none",
+    "guid": "e1254704-eb9c-4cec-aba1-bece114a8dd9",
     "colors": [
       "#e6e5e7",
       "#b6b6d5",
@@ -21,7 +49,7 @@
   },
   {
     "name": "none",
-    "guid": "17ed7629-221b-4336-ac77-f3796aa3036b",
+    "guid": "0807ed05-5154-40f8-93a0-31fee6aa69dc",
     "colors": [
       "#f0f4f1",
       "#9da69f",
@@ -32,7 +60,7 @@
   },
   {
     "name": "none",
-    "guid": "e2ca569f-43fe-4f7f-be23-bf314001a3da",
+    "guid": "6cb371c4-72b1-4937-bbb9-b38b1954c50c",
     "colors": [
       "#ddddb9",
       "#b8b3af",
@@ -43,7 +71,7 @@
   },
   {
     "name": "none",
-    "guid": "f1bc2c22-dbd3-4486-8641-7952056b08d5",
+    "guid": "3b26e872-853f-4757-825f-c0220118c007",
     "colors": [
       "#dfe0ec",
       "#757179",
@@ -54,7 +82,7 @@
   },
   {
     "name": "none",
-    "guid": "bac76896-b580-40ce-9ac2-31c86d34e3a8",
+    "guid": "109720f5-f1be-4ec1-b65f-aab08a430fc8",
     "colors": [
       "#d1d7d7",
       "#afa9b4",
@@ -65,7 +93,7 @@
   },
   {
     "name": "none",
-    "guid": "42bf8246-4f1a-4fca-bc03-a4ddf0b35cec",
+    "guid": "3d740784-80cb-4c15-98f5-b58148a9447b",
     "colors": [
       "#bab4b8",
       "#391842",
@@ -76,7 +104,7 @@
   },
   {
     "name": "none",
-    "guid": "92969cdd-3282-47a8-9688-f46e903f6858",
+    "guid": "b6f06806-3f82-4f2b-952d-35ab39eb017e",
     "colors": [
       "#ebeaec",
       "#9d9ba2",
@@ -87,7 +115,7 @@
   },
   {
     "name": "none",
-    "guid": "a52de487-4423-4e4b-9f91-975b4965af7a",
+    "guid": "7005fe7d-3e73-4e55-8c96-a28500821587",
     "colors": [
       "#eaedf1",
       "#bcd1d2",
@@ -98,7 +126,7 @@
   },
   {
     "name": "none",
-    "guid": "d4bc214f-ba7f-4527-9990-d9bee838c2a0",
+    "guid": "e408e1ac-4c5e-4bef-8395-89a0eeb878c4",
     "colors": [
       "#eff0f9",
       "#c9ceec",
@@ -109,7 +137,7 @@
   },
   {
     "name": "none",
-    "guid": "87462786-dbda-49ce-8bb7-f81c6e5e60df",
+    "guid": "15cb8a70-0253-406a-bd0c-66f18725cf76",
     "colors": [
       "#caeecf",
       "#9bc8b8",
