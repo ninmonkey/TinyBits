@@ -46,15 +46,15 @@
       "key": "tab",
       "command": "insertSnippet",
       "when": "editorTextFocus && hasSnippetCompletions && !editorTabMovesFocus && !inSnippetMode"
-    } 
- 
+    }
+
   {
     "key": "ctrl+alt+j",
     "command": "editor.action.insertSnippet",
     "when": "editorTextFocus && !editorReadonly && editorLangId == 'powershell'"
   }
      */
-  /* remove bind 
+  /* remove bind
   {
     "key": "ctrl+shift+alt+j",
     "command": "code-runner.runByLanguage"

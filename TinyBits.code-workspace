@@ -1,33 +1,50 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
+    "folders": [
+        {
+            "path": "."
+        }
     ],
     "settings": {
-		"explorer.fileNesting.patterns": {
-			"*.ts": "${capture}.js",
-			"*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
-			"*.ps1": "${capture}.psx.ps1",
-			"*.jsx": "${capture}.js",
-			"*.tsx": "${capture}.ts",
-			"tsconfig.json": "tsconfig.*.json",
-			"package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock"
-		},
-		"files.associations": {
-			"**/vscode/**/*.json": "jsonc",
-			"**/*.json": "jsonc",
-			// "*/*.json": "jsonc",
-			// "**/*.json": "jsonc",
-			// "*.svg": "xml"
-		},
+         "files.associations": {
+            "**/vscode/**/*.json": "jsonc",
+            "**/*.json": "jsonc",
+            // "*.svg": "xml"
+        },
+        "workbench.editorAssociations": {
+            // "*.copilotmd": "vscode.markdown.preview.editor",
+            // "*.svg": "imagePreview.previewEditor",
+            // "*.svg": "default",
+        },
+        "explorer.fileNesting.patterns": {
+            "*.ts": "${capture}.js",
+            "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+            "*.ps1": "${capture}.psx.ps1",
+            "*.jsx": "${capture}.js",
+            "*.tsx": "${capture}.ts",
+            "tsconfig.json": "tsconfig.*.json",
+            "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock"
+        },
 
-		"workbench.editorAssociations": {
-			// "*.copilotmd": "vscode.markdown.preview.editor",
-			// "*.svg": "imagePreview.previewEditor",
-			// "*.svg": "default",
-			
-		}
-		
-	},
+        "json.schemas": [
+            /* see docs: https://code.visualstudio.com/docs/languages/json#_use-rich-formatting-in-hovers
+            schema name came from here <https://github.com/microsoft/vscode/blob/e5e9a6556e8dd4f5c60074b0a9466be4b490ac29/src/vs/workbench/contrib/snippets/browser/snippets.contribution.ts#L100C1-L100C1>
+            */
+            {
+                "url": "vscode://schemas/global-snippets",
+                "fileMatch": [ "code-snippets" ],
+            },
+            {
+                "url": "vscode://schemas/global-snippets",
+                "fileMatch": [ "*/vscode/snippets/*.json" ],
+            },
+            {
+                "url": "vscode://schemas/settings/user",
+                "fileMatch": [ "*/vscode/settings.json/*.json" ],
+            },
+            {
+                "url": "vscode://schemas/keybindings",
+                "fileMatch": [ "*/vscode/keybindings.json/*.json" ],
+            },
+        ],
+    },
 }
