@@ -1,0 +1,22 @@
+{
+    /* about: Nests files in groups for this repo: https://github.com/PowerShellWeb/Turtle
+
+    Example: You have these files
+
+        - SierpinskiTriangle.turtle.ps1
+        - SierpinskiTriangle.png
+        - SierpinskiTriangle.svg
+
+    Explorer now groups them like this:
+
+        + SierpinskiTriangle.turtle.ps1
+            - SierpinskiTriangle.png
+            - SierpinskiTriangle.svg
+
+    */
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": true, // sets whether they are collapsed by default
+    "explorer.fileNesting.patterns": {
+        "*.turtle.ps1": "${capture}.svg, ${capture}.png", // groups source build, and screenshot together
+    }
+}
