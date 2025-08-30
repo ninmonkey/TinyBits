@@ -32,18 +32,39 @@
 </section>
 <style type="text/css">
     :is(section, div) {
-        border: 4px solid rgba(250, 128, 114, 0.322);
+        border: 8px solid rgba(250, 128, 114, 0.522);
         background-color: hsl(.25turn 100% 95% / .8);
     }
     :is(:host, :root) {
-        border: 4px solid rgba(114, 150, 250, 0.712);
-        background-color: hsl(0turn 100% 95% / .8);
+        border: 8px solid rgba(114, 150, 250, 0.612);
     }
 </style>
 
-<!--
-<script type="module">
+<section id="main">
+    <h1>Custom element</h1>
 
+    <fact-element>
+        <span slot="fact-label">
+            Cat Facts:
+        </span>
+        <span slot="fact-value">
+            Cats have 9 lives.
+        </span>
+    </fact-element>
+    <fact-element>
+        <span slot="fact-label">
+            Cat Facts:
+        </span>
+        <span slot="fact-value">
+            That's not actually true
+        </span>
+    </fact-element>
+    <h6>etc...</h6>
+    <fact-element></fact-element>
+</section>
+
+<script type="module">
+    let totalCount = 0
 
     class FactElement extends HTMLElement {
         #shadow = null
@@ -52,92 +73,59 @@
             super();
             this.#shadow = this.attachShadow( { mode: 'open' } );
         }
-        connectedCallback () {
-            // const template = document.getElementById('template-fact').content.cloneNode( true );
-            // template.
-            // this.#shadow.appendChild( template );
-            const template = template_commitMessage.content.cloneNode( true );
-            this.#shadow.appendChild( template );
+        replaceCssRules() {
+            const sheet = new CSSStyleSheet();
+            sheet.replaceSync(" span { color: magenta; border: 4px dotted rgba(0, 0, 0, 0.473) ;}");
+            sheet.insertRule(" div { border: 4px dashed rgba(0, 0, 255, 0.473) ; }", sheet.cssRules.length);
+            const host = document.querySelector('#host')
+            this.#shadow.adoptedStyleSheets = [ sheet ]
+            const span = document.createElement('span')
 
+            span.textContent = 'hi from shadow dom'
+            this.#shadow.appendChild( span )
 
-
-
-        }
-    }
-    customElements.define( 'commit-message', FactElement );
-</script> -->
-<script type="module">
-
-    class FactElement extends HTMLElement {
-        #shadow = null
-        #species = '🐵'
-        constructor() {
-            super();
-            this.#shadow = this.attachShadow( { mode: 'open' } );
         }
         connectedCallback () {
             const template = document.getElementById('template-fact')
             const templateElem = template.content.cloneNode( true );
+
+            // const stylesheet = new CSSStyleSheet();
+            // stylesheet.replaceSync("body { font-size: 1.4em; } p { color: blue; }");
+
+            this.replaceCssRules()
             this.#shadow.appendChild( templateElem );
         }
     }
     customElements.define( 'fact-element', FactElement );
 </script>
-<section id="main">
-    <h1>Custom element</h1>
-    <fact-element></fact-element>
-    <fact-element><slot name="fact-value">Cats have 9 laves</slot></fact-element>
-    <fact-element><slot name="fact-value">That's not actually true</slot></fact-element>
-</section>
-
-
     <template id="template-fact">
         <div>
             <style>
-                /* :root {
-                    --commit-message-color: #333;
-                    --commit-author-color: #555;
-                    --commit-date-color: #777;
-                }
-                :host {
-                    display: block;
-                    border: 1px dotted black;
-                    padding: 10px;
-                    margin: 10px;
-                    outline: 3px solid green;
-                }
-                * {
-                    border: 2px solid salmon;
-                } */
-                 /* :is(:host, :root) {
-                    border: 4px solid rgba(114, 150, 250, 0.712);
-                    background-color: hsl(236, 98%, 51%);
-                } */
-                :host > *  {
-                    /* font-size:300px;
-                    color: red; */
-                }
-
                 :is(.fact-label, .fact-value) {
                     background-color:rgba(192, 201, 255, 0.397);
-                    /* border-collapse: collapse; */
                 }
                 :has(.fact-label, .fact-value) {
-                    border-collapse: collapse;
-                    border: 8px solid rgba(128, 0, 128, 0.233);
+                    border: 8px solid rgba(128, 0, 128, 0.2);
+                    margin: .25ch .5ch;
+                    padding: .25ch .5ch;
 
                 }
                 .fact-label {
                     color: green;
                     font-size: 1.2rem;
-                    outline: 3px solid orange;
+                    outline: 3px solid rgba(255, 166, 0, 0.514);
                 }
                 .fact-value {
-                    outline: 3px solid red;
+                    outline: 3px solid rgba(255, 0, 0, 0.384);
                     color: red;
                     font-size: 1rem;
                 }
             </style>
+            <h6>stuff</h6>
+            <div class="attributes">
+                <h4><span>Attributes</span></h4>
+                <slot name="attributes"><p>None</p></slot>
+            </div>
             <div class="fact-wrapper">
                 <span class="fact-label"><slot name="fact-label">Fact: </slot></span>
                 <span class="fact-value"><slot name="fact-value">Cats have 9 lives</slot></span>
