@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Element: Basic</title>
+    <!-- <link rel="stylesheet" href="./base.css">
+    <link rel="stylesheet" href="./spin-single.css"> -->
+</head>
+<style type="text/css">
+</style>
+<section>
+    <nav>
+        <ul>
+            <li> <a href=".">Go Back ⮥</a> </li>
+        </ul>
+    </nav>
+</section>
+<section id="cmd-bar">
+
+    <button id="cmd-style-2">spin-single-with-perspective</button> (boomerang)
+    <button id="cmd-style-1">spin-single-with-perspective</button> (from center)
+</section>
+
+<script type="module">
+
+
+    class ZooElement extends HTMLElement {
+        #shadow = null
+        #species = '🐵'
+        constructor() {
+            super();
+            this.#shadow = this.attachShadow( { mode: 'open' } );
+        }
+        connectedCallback () {
+            // const template = document.getElementById('template-zoo-animal').content.cloneNode( true );
+            // template.
+            // this.#shadow.appendChild( template );
+            const template = template_commitMessage.content.cloneNode( true );
+            this.#shadow.appendChild( template );
+
+
+
+
+        }
+    }
+    customElements.define( 'commit-message', ZooElement );
+</script>
+<section id="main">
+    <h1>Custom element</h1>
+    <zoo-element><slot name="name">bob</slot></zoo-element>
+    <zoo-element></zoo-element>
+    <zoo-element></zoo-element>
+</section>
+
+
+    <template id="template-zoo-animal">
+        <style>
+            :root {
+                --commit-message-color: #333;
+                --commit-author-color: #555;
+                --commit-date-color: #777;
+            }
+
+            :host {
+                display: block;
+                border: 1px dotted black;
+                padding: 10px;
+                margin: 10px;
+                outline: 3px solid green;
+            }
+
+            .zoo-species {
+                outline: 3px solid orange;
+            }
+
+
+        </style>
+        <div class="zoo-wrapper">
+            species: <span class="zoo-species">🐒</span>
+            <slot name="name">Nameless</slot>
+        </div>
+    </template>
+
+</body>
+
+</html>
