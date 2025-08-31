@@ -1,0 +1,27 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema-preview",
+    "profiles": {
+        "list": [
+            {
+                "autoMarkPrompts": true,
+                "bellStyle": [
+                    "window",
+                    "taskbar"
+                ],
+                "colorScheme": "Nin-Nord",
+                "commandline": "C:\\WINDOWS\\system32\\wsl.exe -d Ubuntu pwsh -NoL",
+                "cursorShape": "emptyBox",
+                "guid": "{5764eae2-c78d-4fd9-8c0f-bc82c57a7387}",
+                "hidden": false,
+                "historySize": 9001,
+                "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
+                "name": "Ubuntu",
+                "pathTranslationStyle": "wsl",
+                "showMarksOnScrollbar": true,
+                "suppressApplicationTitle": true
+            },
+        ]
+        // "defaults": {},
+    }
+}

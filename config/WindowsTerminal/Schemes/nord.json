@@ -1,0 +1,23 @@
+        {
+            "background"         : "#2E3440",
+            "black"              : "#3B4252",
+            "blue"               : "#81A1C1",
+            "brightBlack"        : "#4C566A",
+            "brightBlue"         : "#4B6988",
+            "brightCyan"         : "#377E7D",
+            "brightGreen"        : "#A3BE8C",
+            "brightPurple"       : "#6D3A64",
+            "brightRed"          : "#943B44",
+            "brightWhite"        : "#7C7C7C",
+            "brightYellow"       : "#EBCB8B",
+            "cursorColor"        : "#FFFFFF",
+            "cyan"               : "#88C0D0",
+            "foreground"         : "#EBECF0",
+            "green"              : "#A3BE8C",
+            "name"               : "Nord-3bit",
+            "purple"             : "#B48EAD",
+            "red"                : "#BF616A",
+            "selectionBackground": "#FFFFFF",
+            "white"              : "#CDA1E0",
+            "yellow"             : "#B49453"
+        }

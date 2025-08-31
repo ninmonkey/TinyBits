@@ -1,0 +1,51 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema-preview",
+    "profiles": {
+        "list": [
+            {
+                "adjustIndistinguishableColors": "indexed",
+                "altGrAliasing": false,
+                "antialiasingMode": "grayscale",
+                "autoMarkPrompts": true,
+                "backgroundImage": null,
+                "backgroundImageOpacity": 0.59,
+                "backgroundImageStretchMode": "uniformToFill",
+                "bellStyle": [
+                    "window",
+                    "taskbar"
+                ],
+                "colorScheme": "Nin-Nord",
+                "commandline": "C:\\Program Files\\PowerShell\\7-preview\\pwsh.exe -nol",
+                "cursorShape": "doubleUnderscore",
+                "experimental.retroTerminalEffect": false,
+                "font": {
+                    "axes": {},
+                    "face": "Cascadia Code PL",
+                    "features": {},
+                    "size": 12,
+                    "weight": "normal"
+                },
+                "guid": "{623d1391-215d-44b0-aeab-aaf3edb6d59d}",
+                "hidden": false,
+                "historySize": 15000,
+                "icon": "ms-appx:///ProfileIcons/pwsh-preview.png",
+                "name": "pwsh-preview",
+                "opacity": 100,
+                "scrollbarState": "visible",
+                "selectionBackground": "#DB22C3",
+                "showMarksOnScrollbar": true,
+                "startingDirectory": "h:\\data\\2024\\pwsh",
+                "suppressApplicationTitle": false,
+                "tabColor": "#FE9922",
+                "tabTitle": "Pwsh-Preview",
+                "unfocusedAppearance": {
+                    "colorScheme": "Nord-3bit-iter2",
+                    "cursorShape": "vintage"
+                },
+                "useAcrylic": false
+            },
+        ]
+        // "defaults": {},
+    }
+}

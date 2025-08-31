@@ -1,0 +1,75 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema-preview",
+    "profiles": {
+        "list": [
+            {
+                "antialiasingMode": "cleartype",
+                "bellStyle": [
+                    "window",
+                    "taskbar"
+                ],
+                "closeOnExit": "never",
+                "colorScheme": "BirdsOfParadise",
+                "commandline": "pwsh.exe -NoProfile -NoLogo",
+                "cursorShape": "bar",
+                "experimental.retroTerminalEffect": false,
+                "font": {
+                    "face": "Cascadia Mono",
+                    "size": 14,
+                    "weight": "light"
+                },
+                "guid": "{eb2947a1-0677-52d3-8e34-39b1925d4a18}",
+                "hidden": true,
+                "icon": "ms-appx:///ProfileIcons/pwsh.png",
+                "name": "Pwsh -NoProfile",
+                "padding": "20, 5, 120, 120",
+                "tabColor": "#9F349F",
+                "tabTitle": "Pwsh -NoP"
+                // "adjustIndistinguishableColors": "indexed",
+                // "altGrAliasing": false,
+                // "antialiasingMode": "grayscale",
+                // "autoMarkPrompts": true,
+                // "backgroundImage": null,
+                // "backgroundImageOpacity": 0.59,
+                // "backgroundImageStretchMode": "uniformToFill",
+                // "bellStyle": [
+                //     "window",
+                //     "taskbar"
+                // ],
+                // "colorScheme": "Nin-Nord",
+                // "commandline": "pwsh.exe -nol",
+                // "cursorShape": "doubleUnderscore",
+                // "experimental.retroTerminalEffect": false,
+                // "font": {
+                //     "axes": {},
+                //     "face": "Cascadia Code PL",
+                //     "features": {},
+                //     "size": 12,
+                //     "weight": "normal"
+                // },
+                // "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                // "hidden": false,
+                // "historySize": 30000,
+                // "name": "pwsh",
+                // "opacity": 100,
+                // "scrollbarState": "visible",
+                // "selectionBackground": "#DB22C3",
+                // "showMarksOnScrollbar": true,
+                // "source": "Windows.Terminal.PowershellCore",
+                // "startingDirectory": "h:\\data\\2025\\pwsh",
+                // "suppressApplicationTitle": false,
+                // "tabColor": "#FE9922",
+                // "tabTitle": "Pwsh1",
+                // "unfocusedAppearance": {
+                //     "colorScheme": "Nord-3bit-iter2",
+                //     "cursorColor": null,
+                //     "cursorShape": "vintage",
+                //     "intenseTextStyle": "all"
+                // },
+                // "useAcrylic": false
+            },
+        ],
+        // "defaults": {},
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema-preview",
+    "profiles": {
+        "list": [
+             {
+                "backgroundImage": "desktopWallpaper",
+                "backgroundImageOpacity": 1,
+                "colorScheme": "Nord-3bit-iter2",
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "font":
+                {
+                    "face": "Cascadia Code PL"
+                },
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "WinPS (Normal)",
+                "opacity": 100,
+                "unfocusedAppearance":
+                {
+                    "backgroundImage": "desktopWallpaper",
+                    "backgroundImageOpacity": 0.67
+                },
+                "useAcrylic": true
+            },
+        ]
+        // "defaults": {},
+    }
+}

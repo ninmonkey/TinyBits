@@ -1,0 +1,31 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema-preview",
+    "profiles": {
+        "list": [
+            {
+                "autoMarkPrompts": true,
+                "bellStyle":
+                [
+                    "window",
+                    "taskbar"
+                ],
+                "colorScheme": "Nin-Nord",
+                "cursorShape": "emptyBox",
+                "font":
+                {
+                    "face": "CaskaydiaCove NF",
+                    "size": 12
+                },
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": false,
+                "historySize": 9001,
+                "name": "Ubuntu (bash)",
+                "showMarksOnScrollbar": true,
+                "source": "Windows.Terminal.Wsl",
+                "suppressApplicationTitle": true
+            },
+        ]
+        // "defaults": {},
+    }
+}

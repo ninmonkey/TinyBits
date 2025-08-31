@@ -1,0 +1,30 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema-preview",
+    "profiles": {
+        "list": [
+            {
+                "antialiasingMode": "cleartype",
+                "bellStyle": [
+                    "window",
+                    "taskbar"
+                ],
+                "closeOnExit": "never",
+                "colorScheme": "BirdsOfParadise",
+                "commandline": "pwsh.exe -NoProfile -NoLogo",
+                "elevate": true,
+                "font": {
+                    "face": "JetBrains Mono NL",
+                    "size": 14
+                },
+                "guid": "{c12d56ba-4855-48fc-b512-a34769967abf}",
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/pwsh.png",
+                "name": "pwsh -Admin -Nop",
+                "startingDirectory": null,
+                "tabTitle": "Pwsh -Admin -Nop"
+            }
+        ]
+        // "defaults": {},
+    }
+}

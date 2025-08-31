@@ -1,0 +1,23 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema-preview",
+    "profiles": {
+        "list": [
+{
+                "closeOnExit": "graceful",
+                "colorScheme": "Nord-3bit-iter2",
+                "commandline": "%programfiles%/Git/usr/bin/bash.exe -i -l",
+                "font":
+                {
+                    "face": "Cascadia Mono"
+                },
+                "guid": "{06dfbfd2-984a-4d56-a40b-41b4f8221215}",
+                "historySize": 9001,
+                "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
+                "name": "Git-Bash",
+                "startingDirectory": "%userprofile%/Documents"
+            },
+        ]
+        // "defaults": {},
+    }
+}

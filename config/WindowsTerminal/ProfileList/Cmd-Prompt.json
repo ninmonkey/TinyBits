@@ -1,0 +1,18 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema-preview",
+    "profiles": {
+        "list": [
+             {
+                "font":
+                {
+                    "face": "Cascadia Code PL SemiLight"
+                },
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": true,
+                "name": "Command Prompt"
+            },
+        ]
+        // "defaults": {},
+    }
+}

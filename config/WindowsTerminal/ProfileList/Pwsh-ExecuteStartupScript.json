@@ -1,0 +1,53 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema-preview",
+    "profiles": {
+        "list": [
+            {
+                "adjustIndistinguishableColors": "indexed",
+                "altGrAliasing": false,
+                "antialiasingMode": "grayscale",
+                "autoMarkPrompts": true,
+                "backgroundImage": null,
+                "backgroundImageOpacity": 0.59,
+                "backgroundImageStretchMode": "uniformToFill",
+                "bellStyle": [
+                    "window",
+                    "taskbar"
+                ],
+                "colorScheme": "Nin-Nord",
+                "commandline": "pwsh -nop -nol -File c:/nin/pwsh/tail_watch.ps1",
+                "cursorShape": "doubleUnderscore",
+                "experimental.retroTerminalEffect": false,
+                "font": {
+                    "axes": {},
+                    "face": "Cascadia Code PL",
+                    "features": {},
+                    "size": 12,
+                    "weight": "normal"
+                },
+                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                "hidden": false,
+                "historySize": 30000,
+                "name": "pwsh (with custom startup script)",
+                "opacity": 100,
+                "scrollbarState": "visible",
+                "selectionBackground": "#DB22C3",
+                "showMarksOnScrollbar": true,
+                "source": "Windows.Terminal.PowershellCore",
+                "startingDirectory": "c:\\nin\\pwsh",
+                "tabColor": "#FE9922",
+                "unfocusedAppearance": {
+                    "colorScheme": "Nord-3bit-iter2",
+                    "cursorColor": null,
+                    "cursorShape": "vintage",
+                    "intenseTextStyle": "all"
+                },
+                "useAcrylic": false,
+                "suppressApplicationTitle": true,
+                "tabTitle": "\ud83d\udcd4 tail_watch",
+            },
+        ]
+        // "defaults": {},
+    }
+}
