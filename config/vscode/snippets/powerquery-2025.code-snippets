@@ -1,0 +1,33 @@
+{
+    /*
+        about: Snippets applied to all file types (pq, markdown)
+    */
+    "Structured Error Message": {
+        "prefix": "errorMessage",
+        "scope": "powerquery,md,snippets",
+        "body": [
+            "errorIfFail = [",
+            "   Message.Format = \"${1:Invalid value}: #{0} ! Found: #{1}}\",",
+            "   Message.Parameters = { ${2:val1, val2} } ],",
+            "${0}",
+            /* save a copy of the working escape:
+            // "   Message.Format = \"${1:Invalid value: #{0\\} ! Found: #{1\\}}\"",
+            */
+        ],
+        "description": "Structured errors: 'newer' error message format | 🦍"
+    },
+    "Add Custom Column": {
+        "prefix": "Add Column",
+        "description": "Table ⁞ Add a custom column, optionally typed | 🦍",
+        "body": [
+            "${1:StepName} = Table.AddColumn(",
+            "    ${2:TableName},",
+            "    \"${3:ColumnName}\",",
+            // "    each ${0:$TM_SELECTED_TEXT}",
+            "    (row) => ${0:row},",
+            "    ${4:type any}",
+            "),",
+        ],
+    },
+}
+
