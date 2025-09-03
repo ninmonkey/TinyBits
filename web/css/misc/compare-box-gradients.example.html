@@ -27,37 +27,45 @@
     <nav>
         <ul>
             <li><a href=".">Go Back ⮥</a></li>
-            <li><a href="https://www.digitalocean.com/community/tutorials/css-css-background-drop-shadows?utm_medium=content_acq&utm_source=css-tricks">blog: CSS Background Drop Shadows</a></li>
+            <li><a
+                    href="https://www.digitalocean.com/community/tutorials/css-css-background-drop-shadows?utm_medium=content_acq&utm_source=css-tricks">blog:
+                    CSS Background Drop Shadows</a></li>
             <li><a href="https://codepen.io/tribex/pen/wmjRNe">Original codepen</a></li>
         </ul>
     </nav>
     <section>
         <div class="fancy-box-wrapper">
-            <div class="fancy-box gradient box-1"></div>
-            <div class="fancy-box gradient box-2"></div>
-            <div class="fancy-box gradient box-3"></div>
+            <div class="fancy-box gradient box-1" data-desc="1 and bottom left"></div>
+            <div class="fancy-box gradient box-2" data-desc="1 and bottom right"></div>
+            <div class="fancy-box gradient box-3" data-desc="..."></div>
+            <div class="fancy-box gradient box-4" data-desc="3 linear gradients"></div>
+            <div class="fancy-box gradient box-5" data-desc="..."></div>
+            <div class="fancy-box gradient box-6" data-desc="..."></div>
+            <div class="fancy-box gradient box-7" data-desc="with dest transparent 40%"></div>
+            <div class="fancy-box gradient box-8" data-desc="with dest transparent 80%"></div>
+            <div class="fancy-box gradient box-9" data-desc="dest transparent 80%"></div>
+            <div class="fancy-box gradient box-10" data-desc="dest blue 80%"></div>
+            <div class="fancy-box gradient box-11" data-desc=""></div>
+            <div class="fancy-box gradient box-12" data-desc=""></div>
+            <div class="fancy-box gradient box-13" data-desc=""></div>
+            <div class="fancy-box gradient box-14" data-desc=""></div>
+            <div class="fancy-box gradient box-15" data-desc=""></div>
             <div class="fancy-box image"></div>
             <div class="fancy-box shaped"></div>
         </div>
         <script type="module">
-            const boxes = document.querySelectorAll('.fancy-box');
-            boxes.forEach(box => {
-                const label = document.createElement('span');
+            const boxes = document.querySelectorAll( '.fancy-box' );
+            boxes.forEach( box => {
+                const label = document.createElement( 'span' );
                 const pattern = /box-\d+/
-                Array.from( box.classList ).find( cls => pattern.test(cls) )
-                Array.from( box.classList ).forEach( cls => {
-                    if (pattern.test(cls)) {
-                        label.textContent = cls;
-                    }
-                });
-                // const found = box.classList.entries
-                // pick the class name that matches the regex "box-\d+"
-                // const match = box.className.match(/box-\d+/);
-                // if (match) {
-                //     label.textContent = match[0];
-                // }
-                box.appendChild(label);
-            });
+                const found = Array.from( box.classList ).find( cls => pattern.test( cls ) )
+                label.textContent = found
+                const desc = box.dataset.desc ?? ''
+                const label2 = document.createElement( 'p' );
+                label2.textContent = desc;
+                box.appendChild( label )
+                box.appendChild( label2 )
+            } );
 
         </script>
     </section>

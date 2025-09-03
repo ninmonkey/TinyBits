@@ -67,15 +67,177 @@
         --grad-start: rgb(228, 202, 88);
         --grad-end: rgb(206, 50, 141);
 
+        background: linear-gradient(to bottom right,
+                var(--grad-start),
+                var(--grad-end));
+    }
 
+    &.box-3 {
+        background:
+            linear-gradient(217deg, rgb(255 0 0 / 0.8), transparent 70.71%),
+            linear-gradient(127deg, rgb(0 255 0 / 0.8), transparent 70.71%),
+            linear-gradient(336deg, rgb(0 0 255 / 0.8), transparent 70.71%);
+    }
+
+    &.box-4 {
+        --angle-1: 217deg;
+        --angle-2: 127deg;
+        --angle-3: 336deg;
+        --grad-1: rgb(255, 0, 0);
+        --grad-2: rgb(0, 255, 0);
+        --grad-3: rgb(0, 0, 255);
+        background:
+            linear-gradient(var(--angle-1), var(--grad-1), transparent 70.71%),
+            linear-gradient(var(--angle-2), var(--grad-2), transparent 70.71%),
+            linear-gradient(var(--angle-3), var(--grad-3), transparent 70.71%);
+    }
+
+    &.box-5 {
+        --angle-1: 217deg;
+        --angle-2: 127deg;
+        --angle-3: 336deg;
+        --grad-1: rgb(43, 36, 107);
+        --grad-2: rgb(0, 255, 0);
+        --grad-3: rgb(0, 0, 255);
+
+        background:
+            linear-gradient(var(--angle-1), var(--grad-1), transparent 70.71%),
+            linear-gradient(var(--angle-2), var(--grad-2), transparent 70.71%),
+            linear-gradient(var(--angle-3), var(--grad-3), transparent 70.71%);
+    }
+
+    &.box-6 {
+        --angle-1: 217deg;
+        --angle-2: 127deg;
+        --angle-3: 336deg;
+        --angle-4: 40deg;
+        --grad-1: rgb(43, 36, 107);
+        --grad-2: rgb(0, 255, 0);
+        --grad-2: rgb(79, 22, 212);
+        --grad-3: rgb(0, 0, 255);
+
+        background:
+            linear-gradient(var(--angle-1), var(--grad-1), transparent 70.71%),
+            linear-gradient(var(--angle-1), var(--grad-1), transparent 70.71%),
+            linear-gradient(var(--angle-2), var(--grad-2), transparent 70.71%),
+            linear-gradient(var(--angle-3), var(--grad-3), transparent 70.71%);
+    }
+
+    &.box-7 {
+        --angle-1: 217deg;
+        --angle-2: 127deg;
+        --angle-3: 336deg;
+        --angle-4: 40deg;
+        --grad-1: rgb(43, 36, 107);
+        --grad-2: rgb(0, 255, 0);
+        --grad-2: rgb(79, 22, 212);
+        --grad-3: rgb(0, 0, 255);
+        --percent: 40.71%;
+
+        background:
+            linear-gradient(var(--angle-1), var(--grad-1), transparent var(--percent)),
+            linear-gradient(var(--angle-1), var(--grad-1), transparent var(--percent)),
+            linear-gradient(var(--angle-2), var(--grad-2), transparent var(--percent)),
+            linear-gradient(var(--angle-3), var(--grad-3), transparent var(--percent));
+    }
+
+    &.box-8 {
+        --angle-1: 217deg;
+        --angle-2: 127deg;
+        --angle-3: 336deg;
+        --angle-4: 40deg;
+        --grad-1: rgb(43, 36, 107);
+        --grad-2: rgb(79, 22, 212);
+        --grad-3: rgb(0, 0, 255);
+        --percent: 80.71%;
+
+        background:
+            linear-gradient(var(--angle-1), var(--grad-1), transparent var(--percent)),
+            linear-gradient(var(--angle-1), var(--grad-1), transparent var(--percent)),
+            linear-gradient(var(--angle-2), var(--grad-2), transparent var(--percent)),
+            linear-gradient(var(--angle-3), var(--grad-3), transparent var(--percent));
+    }
+
+    &.box-9 {
+        --angle-1: 217deg;
+        --angle-2: 127deg;
+        --angle-3: 336deg;
+        --angle-4: 40deg;
+        --dest: chocolate;
+        --dest: transparent;
+        --grad-1: rgb(43, 36, 107);
+        --grad-2: rgb(79, 22, 212);
+        --grad-2: rgb(0, 255, 0);
+        --grad-3: rgb(0, 0, 255);
+        --percent: 80.71%;
+
+        background:
+            linear-gradient(var(--angle-1), var(--grad-1), var(--dest) var(--percent)),
+            linear-gradient(var(--angle-1), var(--grad-1), var(--dest) var(--percent)),
+            linear-gradient(var(--angle-2), var(--grad-2), var(--dest) var(--percent)),
+            linear-gradient(var(--angle-3), var(--grad-3), var(--dest) var(--percent));
+    }
+
+    &.box-10 {
+        --angle-1: 217deg;
+        --angle-2: 127deg;
+        --angle-3: 336deg;
+        --angle-4: 40deg;
+        --dest: transparent;
+        --dest: salmon;
+        --grad-1: rgb(43, 36, 107);
+        --grad-2: rgb(79, 22, 212);
+        --grad-2: rgb(0, 255, 0);
+        --grad-3: rgb(0, 0, 255);
+        --percent: 99.71%;
+
+        background:
+            linear-gradient(var(--angle-1), var(--grad-1), var(--dest) var(--percent)),
+            linear-gradient(var(--angle-1), var(--grad-1), var(--dest) var(--percent)),
+            linear-gradient(var(--angle-2), var(--grad-2), var(--dest) var(--percent)),
+            linear-gradient(var(--angle-3), var(--grad-3), var(--dest) var(--percent));
+    }
+
+    &.box-11 {
+        --angle-1: 217deg;
+        --angle-2: 127deg;
+        --angle-3: 336deg;
+        --grad-1: lch(53.23% 104.58 40);
+        --grad-2: lch(87.74% 119.78 136.02);
+        --grad-3: lch(32.3% 133.82 306.29);
+        --grad-1: lch(54.71% 83.9 9.22 / 0.397);
+        --grad-2: lch(54.71% 83.9 9.22 / 0.397);
+        --grad-3: lch(54.71% 83.9 9.22 / 0.397);
+        --grad-3: lch(2.3% 133.82 306.29);
+        background:
+            linear-gradient(var(--angle-1), var(--grad-1), rgba(179, 123, 243, 0.452) 71%),
+            linear-gradient(var(--angle-2), var(--grad-2), green 71%),
+            linear-gradient(var(--angle-3), var(--grad-3), green 71%);
     }
 
     & > span {
         color: black;
-        font-size: 2rem;
+        /* font-size: 2rem; */
+        font-size: 0.9rem;
         margin-inline: auto;
         margin-block: 100px;
         opacity: .3;
+    }
+
+    & > span:first-of-type {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    & > p {
+        color: black;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        opacity: .3;
+        transition: opacity 300ms;
+    }
+
+    & > p:hover {
+        opacity: 1.0;
     }
 }
 
