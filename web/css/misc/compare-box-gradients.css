@@ -57,10 +57,10 @@
     &.box-1 {
         --color-1: rgb(107, 183, 86);
         --color-2: rgb(0, 143, 104);
-        --outline-color: orange
+        --outline-color: orange;
     }
 
-    &.box-2 {
+    &.box-16 {
         --color-1: rgb(107, 183, 86);
         --color-2: rgb(0, 143, 104);
         --outline-color: steelblue;
@@ -70,7 +70,111 @@
         background: linear-gradient(to bottom right,
                 var(--grad-start),
                 var(--grad-end));
+        background: none;
+
+        box-shadow:
+            20px 20px 0 #ffd117,
+            -20px 20px 0 #5ac8ff7e,
+            30px -30px 0 #ff0000,
+            -40px -40px 0 #00ff00,
+            40px 30px 0 #440880;
     }
+
+    &.box-17 {
+        --color-1: rgb(107, 183, 86);
+        --color-2: rgb(0, 143, 104);
+        --outline-color: steelblue;
+        --grad-start: rgb(228, 202, 88);
+        --grad-end: rgb(206, 50, 141);
+
+        background: linear-gradient(to bottom right,
+                var(--grad-start),
+                var(--grad-end));
+        background: none;
+
+        box-shadow:
+            10px 10px 0 #ffd11786,
+            -10px 10px 0 #5ac8ff8f,
+            15px -15px 0 #ff00007c,
+            -20px -20px 0 #00ff0080,
+            10px 25px 0 #44088073;
+    }
+
+    &.box-18 {
+        --color-1: rgb(107, 183, 86);
+        --color-2: rgb(0, 143, 104);
+        --outline-color: steelblue;
+        --grad-start: rgb(228, 202, 88);
+        --grad-end: rgb(206, 50, 141);
+
+        background: linear-gradient(to bottom right,
+                var(--grad-start),
+                var(--grad-end));
+        background: none;
+
+        box-shadow:
+            10px 10px 0 #ffd11786,
+            -10px 10px 0 #5ac8ff8f,
+            15px -15px 0 #cc00ff7c,
+            -20px -20px 0 #00ff0080,
+            10px 25px 0 #44088073;
+        filter: blur(8px) hue-rotate(.7turn);
+        /* filter: contrast(100); */
+        /* filter: blur(100px), hue-rotate(.7turn); */
+    }
+
+    &.box-19 {
+        --color-1: rgb(107, 183, 86);
+        --color-2: rgb(0, 143, 104);
+        --outline-color: steelblue;
+        --grad-start: rgb(228, 202, 88);
+        --grad-end: rgb(206, 50, 141);
+
+        background: linear-gradient(to bottom right,
+                var(--grad-start),
+                var(--grad-end));
+        background: none;
+
+        box-shadow:
+            10px 10px 0 #ffd11786,
+            -10px 10px 0 #5ac8ff8f,
+            15px -15px 0 #cc00ff7c,
+            -20px -20px 0 #00ff0080,
+            10px 25px 0 #44088073;
+        filter: blur(8px) hue-rotate(.7turn);
+        filter: grayscale(50%) contrast(150%) blur(1.3px);
+        /* filter: contrast(100); */
+        /* filter: blur(100px), hue-rotate(.7turn); */
+
+        &:hover {
+            filter: blur(8px) hue-rotate(.7turn);
+
+            transition: filter 900ms;
+            outline: 3px solid green;
+        }
+    }
+
+
+    &.box-5 {
+        --color-1: rgb(107, 183, 86);
+        --color-2: rgb(0, 143, 104);
+        --outline-color: steelblue;
+        --grad-start: rgb(228, 202, 88);
+        --grad-end: rgb(206, 50, 141);
+
+        background: linear-gradient(to bottom right,
+                var(--grad-start),
+                var(--grad-end));
+        background: none;
+
+        box-shadow:
+            10px 10px 0 #ffd11775,
+            -20px 20px 0 #5ac8ff7e,
+            30px -30px 0 #ff0000,
+            -40px -40px 0 #00ff00,
+            40px 30px 0 #440880;
+    }
+
 
     &.box-3 {
         background:
