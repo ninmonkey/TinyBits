@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Preview: box-round-with-gradients</title>
+    <link rel="stylesheet" href="./base.css">
+    <link rel="stylesheet" href="./compare-box-gradients.css">
+</head>
+
+<body>
+    <style type="text/css">
+        .box-round {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .box-gradient {
+            background: linear-gradient(135deg, #f06, transparent);
+        }
+
+        h1 {
+            animation: blur-out 700ms alternate infinite;
+        }
+    </style>
+    <nav>
+        <ul>
+            <li><a href=".">Go Back ⮥</a></li>
+            <li><a href="https://www.digitalocean.com/community/tutorials/css-css-background-drop-shadows?utm_medium=content_acq&utm_source=css-tricks">blog: CSS Background Drop Shadows</a></li>
+            <li><a href="https://codepen.io/tribex/pen/wmjRNe">Original codepen</a></li>
+        </ul>
+    </nav>
+    <section>
+        <div class="fancy-box-wrapper">
+            <div class="fancy-box gradient box-1"></div>
+            <div class="fancy-box gradient box-2"></div>
+            <div class="fancy-box gradient box-3"></div>
+            <div class="fancy-box image"></div>
+            <div class="fancy-box shaped"></div>
+        </div>
+        <script type="module">
+            const boxes = document.querySelectorAll('.fancy-box');
+            boxes.forEach(box => {
+                const label = document.createElement('span');
+                const pattern = /box-\d+/
+                Array.from( box.classList ).find( cls => pattern.test(cls) )
+                Array.from( box.classList ).forEach( cls => {
+                    if (pattern.test(cls)) {
+                        label.textContent = cls;
+                    }
+                });
+                // const found = box.classList.entries
+                // pick the class name that matches the regex "box-\d+"
+                // const match = box.className.match(/box-\d+/);
+                // if (match) {
+                //     label.textContent = match[0];
+                // }
+                box.appendChild(label);
+            });
+
+        </script>
+    </section>
+</body>
+
+</html>

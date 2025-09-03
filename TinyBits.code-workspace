@@ -57,11 +57,27 @@
         "version": "0.2.0",
         "configurations": [
             {
-                "name": "🚀 Build Themes.ps1",
+                "name": "TinyBits ⁞ Pwsh ⁞ 🚀 Build Themes.ps1",
                 "type": "PowerShell",
                 "request": "launch",
                 "script": "${workspaceFolder}/color/Build.Themes.ps1",
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}",
+                "presentation": {
+                    "hidden": false,
+                    "group": "0",
+                    "order": 1
+                }
+            },
+            {
+                "type": "chrome",
+                "name": "TinyBits ⁞ Web ⁞ 🐛 Attach Debug to External Preview",
+                "request": "launch",
+                "url": "http://127.0.0.1:3002/web/css/misc/compare-box-gradients.example.html",
+                "presentation": {
+                    "hidden": false,
+                    "group": "0",
+                    "order": 2
+                }
             }
         ],
         "compounds": []

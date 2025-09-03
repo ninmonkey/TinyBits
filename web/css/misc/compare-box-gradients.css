@@ -1,0 +1,107 @@
+.fancy-box-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.fancy-box {
+    --box-dim: 200px;
+    height: var(--box-dim);
+    width: var(--box-dim);
+
+    margin: 2rem;
+    border-radius: 50px;
+    position: relative;
+    display: block;
+}
+
+.fancy-box::before {
+    content: '';
+
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    background: inherit;
+    border-radius: inherit;
+
+    filter: blur(15px);
+    opacity: 0;
+    transition: opacity 300ms;
+}
+
+.fancy-box:hover::before {
+    opacity: 1;
+}
+
+/* .fancy-box.gradient { */
+/* background: linear-gradient(to bottom right, rgb(107, 183, 86), rgb(0, 143, 104)); */
+/* } */
+
+/* .fancy-box.gradient, */
+.fancy-box {
+    --color-1: rgb(107, 183, 86);
+    --color-2: rgb(0, 143, 104);
+    --grad-start: rgb(228, 202, 88);
+    --grad-end: rgb(206, 50, 141);
+    --outline-color: magenta;
+
+    outline: 2px solid var(--outline-color);
+    background: linear-gradient(to bottom left,
+            var(--grad-start),
+            var(--grad-end));
+
+    &.box-1 {
+        --color-1: rgb(107, 183, 86);
+        --color-2: rgb(0, 143, 104);
+        --outline-color: orange
+    }
+
+    &.box-2 {
+        --color-1: rgb(107, 183, 86);
+        --color-2: rgb(0, 143, 104);
+        --outline-color: steelblue;
+        --grad-start: rgb(228, 202, 88);
+        --grad-end: rgb(206, 50, 141);
+
+
+    }
+
+    & > span {
+        color: black;
+        font-size: 2rem;
+        margin-inline: auto;
+        margin-block: 100px;
+        opacity: .3;
+    }
+}
+
+.fancy-box > span:hover {
+    opacity: 1;
+}
+
+.fancy-box.gradient > span {
+    /* z-index: 10; */
+    position: relative;
+    border: 0;
+    /* outline: 0; */
+    /* outline: 3px solid magenta; */
+    /* margin-block: 1ch; */
+    /* margin-inline: 1ch; */
+    width: 300px;
+    margin: 300px 10px;
+    transition: opacity 300ms;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* margin-block: auto; */
+}
+
+
+.fancy-box.shaped {
+    background: url('https://d33wubrfki0l68.cloudfront.net/4e5626a0b7db6b84c0b51f1c0cfd56490fc19b74/7a5ad/images/logo-fancy.svg');
+    background-size: cover;
+    width: 30%;
+    outline: 2px solid chocolate;
+}
