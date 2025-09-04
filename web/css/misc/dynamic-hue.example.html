@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic hue using custom properties</title>
+    <link rel="stylesheet" href="./base.css">
+    <link rel="stylesheet" href="./dynamic-hue.css">
+</head>
+
+<body>
+    <style type="text/css">
+    :root {
+        --hue: 0;
+    }
+    </style>
+    <nav>
+        <ul>
+            <li><a href=".">Go Back ⮥</a></li>
+            <!-- // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascading_variables -->
+
+        </ul>
+    </nav>
+    <section>
+        <input type="range" min="0" max="360" value="0" step="0.1" id="hue" />
+        <div class="hue-wrapper">
+        </div>
+        <script type="module">
+            const root = document.querySelector('div.hue-wrapper')
+            const startingHue = 0;
+            let nth_element = 1
+            for(let i = -5; i < 5; i++ ) {
+                const newBox = document.createElement('div')
+                const dynHue = startingHue + i * 25
+                // newBox.classList.add('fancy-box', 'gradient', `color-${i+1}`)
+                newBox.classList.add('fancy-box', `color-${ nth_element++  }`)
+                newBox.classList.add('color-3')
+
+                newBox.style.setProperty('--hue', dynHue )
+                newBox.textContent = `hue ${dynHue}`
+
+                root.appendChild(newBox)
+            }
+
+            const hue = document.querySelector("#hue");
+
+            const updateHue = () => {
+                document.documentElement.style.setProperty("--hue", hue.value);
+                root.querySelectorAll('.fancy-box').forEach(box => {
+                    box.style.setProperty('--hue', hue.value);
+                });
+            };
+            hue.addEventListener("input", updateHue)
+
+
+            const root2 = document.querySelector('div.hue-wrapper')
+
+
+        </script>
+    </section>
+</body>
+
+</html>

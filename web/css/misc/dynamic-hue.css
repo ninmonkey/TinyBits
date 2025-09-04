@@ -1,0 +1,60 @@
+:root {
+    background-color: #7fe2b4;
+}
+
+.hue-wrapper {
+    display: block flex;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3rem;
+    /* background-color: #c6ded3; */
+}
+
+.fancy-box {
+    position: relative;
+    display: block;
+    height: 20px;
+    width: 100px;
+    border-radius: 40px;
+    /* margin: 50px; */
+    --hue: var(--hue, 100);
+    /* lch(from #123456 calc(l + 10) c h)
+lch(from hsl(180 100% 50%) calc(l - 10) c h)
+lch(from var(--color-value) l c h / calc(alpha - 0.1)) */
+
+    &.color-1 {
+        background-color: hsl(var(--hue) 50% 50%);
+    }
+
+    &.color-2 {
+        background-color: hsl(calc(var(--hue) + 10) 50% 50%);
+    }
+
+    &.color-3 {
+        background-color: hsl(calc(var(--hue) + 20) 50% 50%);
+    }
+
+    &.color-4 {
+        background-color: hsl(calc(var(--hue) + 30) 50% 50%);
+    }
+
+    &.color-5 {
+        background-color: hsl(calc(var(--hue) + 40) 50% 50%);
+    }
+
+    &.color-6 {
+        background-color: hsl(calc(var(--hue) + 50) 50% 50%);
+    }
+
+    &.color-7 {
+        background-color: hsl(calc(var(--hue) + 60) 50% 50%);
+    }
+
+    &.color-8 {
+        background-color: hsl(calc(var(--hue) + 70) 50% 50%);
+    }
+}
+
+.fancy-box.gradient {
+    background: linear-gradient(to bottom right, rgb(107, 183, 86), rgb(0, 143, 104));
+}
