@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html5 Input: Type = range, list = tickmarks.</title>
+</head>
+
+<body>
+    <style type="text/css">
+    </style>
+    <nav>
+        <ul>
+            <li><a href="..">Go Back ⮥</a></li>
+        </ul>
+    </nav>
+    <section>
+        <input
+            type = "range"
+            list = "tickmarks-dlist"
+            min  = "0"
+            max  = "100"
+            id   = "tick"
+            name = "tick"
+        />
+        <label
+            id  = "tick-label"
+            for = "tick">
+            Tip amount:
+        </label>
+        <datalist id="tickmarks-dlist">
+            <option
+                value="0"
+                label="0%">
+            </option>
+            <option value="10" label="Minimum Tip"></option>
+            <option value="20" label="Standard"></option>
+            <option value="30" label="Generous"></option>
+            <option value="50" label="Very Generous"></option>
+            <option value="100" label="Huge"></option>
+        </datalist>
+    </section>
+    <script type="module">
+        const tick_datalist = document.getElementById( 'tickmarks-dlist' )
+        const tick_input = document.getElementById( 'tick' )
+        const tick_label = document.getElementById( 'tick-label' )
+        function updateTipLabel( event ) {
+            const tick_datalist = document.getElementById( 'tickmarks-dlist' )
+            const tick_input = document.getElementById( 'tick' )
+            const tick_label = document.getElementById( 'tick-label' )
+
+            const eventValue = event.target.value
+            const eventAsNum = event.target.valueAsNumber
+            // const option = [...tick_datalist.options].find( o => o.value === eventValue )
+            // const label = option ? option.label : eventValue
+
+            const query_largerValues =  [...tick_datalist.querySelectorAll('option') ]
+                .filter( el => parseFloat( eventAsNum ) >= parseFloat( el.value )  )
+                // .filter( (m) =>  parseFloat( m.value ) >= tick_input.valueAsNumber )
+
+            const largest_value = query_largerValues.at(-1)
+            // query_largerValues.filter( el => parseFloat( eventAsNum ) >= parseFloat( el.value )  )
+
+
+            const label_from_largest = largest_value ? largest_value.label : `${ eventValue } [ evt.value ]`
+            const newLabel = `Tip amount: ${ tick_input.value } ${ label_from_largest }`
+            tick_label.textContent = newLabel
+            console.trace( { newLabel, largest_value, query_largerValues } )
+        }
+
+        tick_input.addEventListener( 'change', updateTipLabel )
+
+        // console.log( 'label', tick_label.textContent )
+        //     summary = [...tick_datalist.options].filter( (e) => e.value == '50' )[0].label
+        //     tick_label.textContent = `Tip amount ${ summary }`
+
+    </script>
+</body>
+
+</html>
