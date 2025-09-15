@@ -26,6 +26,9 @@ function PreviewAll {
         EndColor = $EndColor
         Width = $Width
     }
+    "`nGet-Gradient`n    {0}`n" -f @(
+        "From: ${StartColor}, To: ${EndColor}, Width: ${width}"
+    )
     Get-Gradient @colorSplat -ColorSpace Hsl
     | previewGrad
     | Join-String -op 'Hsl: '
@@ -45,4 +48,34 @@ function PreviewAll {
     Get-Gradient @colorSplat -ColorSpace Xyz
     | previewGrad
     | Join-String -op 'Xyz: '
+    ''
 }
+
+function PreviewColorWheel {
+    param(
+        $Color = 'red',
+        $Cols = ([console]::WindowWidth - 6)
+    )
+
+    $HueStep = 0.3
+    $cols = [console]::WindowWidth
+    "`nGet-ColorWheel`n    {0}`n" -f @(
+        "Color: ${StartColor}, Count: ${cols}, HueStep: ${hueStep}"
+    )
+    Pansies\Get-ColorWheel -HueStep ( $HueStep ) -Count ( $cols ) -Color red
+        | previewGrad
+
+    $hueStep = 360 / $cols
+    $cols = 20
+    "`nGet-ColorWheel`n    {0}`n" -f @(
+        "Color: ${StartColor}, Count: ${cols}, HueStep: ${hueStep} ( is: 360 / `$cols )"
+    )
+    Pansies\Get-ColorWheel -HueStep ( $HueStep ) -Count ( $cols ) -Color red
+        | previewGrad
+    ''
+}
+
+PreviewAll -StartColor 'red' -EndColor 'purple'
+PreviewAll -StartColor 'red' -EndColor 'blue'
+
+PreviewColorWheel
