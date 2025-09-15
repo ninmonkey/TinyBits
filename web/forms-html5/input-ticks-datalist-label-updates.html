@@ -8,13 +8,8 @@
 </head>
 
 <body>
-    <style type="text/css">
-    </style>
-    <nav>
-        <ul>
-            <li><a href="..">Go Back ⮥</a></li>
-        </ul>
-    </nav>
+    <style type="text/css"> </style>
+    <nav> <ul> <li><a href="..">Go Back ⮥</a></li> </ul> </nav>
     <section>
         <input
             type = "range"
@@ -30,10 +25,7 @@
             Tip amount:
         </label>
         <datalist id="tickmarks-dlist">
-            <option
-                value="0"
-                label="0%">
-            </option>
+            <option value="0" label="0%"></option>
             <option value="10" label="Minimum Tip"></option>
             <option value="20" label="Standard"></option>
             <option value="30" label="Generous"></option>
@@ -41,40 +33,41 @@
             <option value="100" label="Huge"></option>
         </datalist>
     </section>
+    <section>
+        <h1>About</h1>
+        <p>Form uses a <code>&lt;input type="range" list="tickmarks-dlist"&gt;</code></p>
+        <p>The datalist defines the tick thresholds, and the labels for each bracket.</p>
+        <p>Live updates label using the highest matching <code>&lt;datalist&gt;</code> value</p>
+    </section>
     <script type="module">
-        const tick_datalist = document.getElementById( 'tickmarks-dlist' )
         const tick_input = document.getElementById( 'tick' )
-        const tick_label = document.getElementById( 'tick-label' )
+        // const tick_datalist = document.getElementById( 'tickmarks-dlist' )
+        // const tick_label = document.getElementById( 'tick-label' )
+
         function updateTipLabel( event ) {
             const tick_datalist = document.getElementById( 'tickmarks-dlist' )
             const tick_input = document.getElementById( 'tick' )
             const tick_label = document.getElementById( 'tick-label' )
-
             const eventValue = event.target.value
             const eventAsNum = event.target.valueAsNumber
-            // const option = [...tick_datalist.options].find( o => o.value === eventValue )
-            // const label = option ? option.label : eventValue
 
+            // or: document.querySelectorAll( '#tickmarks-dlist option' )
             const query_largerValues =  [...tick_datalist.querySelectorAll('option') ]
                 .filter( el => parseFloat( eventAsNum ) >= parseFloat( el.value )  )
-                // .filter( (m) =>  parseFloat( m.value ) >= tick_input.valueAsNumber )
 
-            const largest_value = query_largerValues.at(-1)
-            // query_largerValues.filter( el => parseFloat( eventAsNum ) >= parseFloat( el.value )  )
-
-
+            const largest_value      = query_largerValues.at(-1)
             const label_from_largest = largest_value ? largest_value.label : `${ eventValue } [ evt.value ]`
-            const newLabel = `Tip amount: ${ tick_input.value } ${ label_from_largest }`
+            const newLabel           = `Tip amount: ${ tick_input.value }% ${ label_from_largest }`
+
             tick_label.textContent = newLabel
-            console.trace( { newLabel, largest_value, query_largerValues } )
+
+            console.trace(
+                'split into steps to let you inspect a breakpoint here',
+                { newLabel, largest_value, query_largerValues } )
         }
 
+        tick_input.addEventListener( 'input', updateTipLabel )
         tick_input.addEventListener( 'change', updateTipLabel )
-
-        // console.log( 'label', tick_label.textContent )
-        //     summary = [...tick_datalist.options].filter( (e) => e.value == '50' )[0].label
-        //     tick_label.textContent = `Tip amount ${ summary }`
-
     </script>
 </body>
 
