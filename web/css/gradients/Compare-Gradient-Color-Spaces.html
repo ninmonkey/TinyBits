@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Compare Gradients with Colorspaces</title>
+</head>
+
+<body>
+    <style type="text/css">
+        :root {
+            --from-grad: red;
+            --to-grad: blue;
+            /* --from-grad: red;
+            --to-grad: purple; */
+
+            --bg-from: hsl( 0.5turn 70% 50% / .85);
+            --bg-to: hsl( 0.75turn 70% 50% / .45);
+            /* background-image: linear-gradient(to right, var(--bg-from), var(--bg-to)); */
+            /* background-color: black; */
+            font-family: 'segoe ui', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+        }
+        h1 { font-size: .8rem; }
+
+
+        #root-content {
+            display: block grid;
+            grid-template-columns: 1fr;
+            margin: 5vw;
+        }
+
+        .gradient {
+            height: 50px;
+            width: 100%;
+        }
+
+        .srgb {
+            background-image: linear-gradient(in srgb to right, var(--from-grad), var(--to-grad));
+        }
+
+        .oklab {
+            background-image: linear-gradient(in oklab to right, var(--from-grad), var(--to-grad));
+        }
+
+        .oklch {
+            background-image: linear-gradient(in oklch to right, var(--from-grad), var(--to-grad));
+        }
+
+        #ex-2 {
+            --from-grad: salmon;
+            --to-grad: purple;
+        }
+        #ex-3 {
+            --from-grad: salmon;
+            --to-grad: green;
+        }
+        #ex-4 {
+            --from-grad: hsl( 0.5turn 70% 50% / .85);
+            --to-grad: hsl( 0.75turn 70% 50% / .45);
+        }
+        #ex-5 {
+            --from-grad: hsl( 0.5turn 30% 50% / .85);
+            --to-grad: hsl( 0.75turn 30% 50% / .45);
+        }
+    </style>
+    <section id="root-content">
+
+        <section id="ex-1">
+            <h1>Example 1</h1>
+            <div>sRGB:</div>
+            <div class="gradient srgb"></div>
+            <div>Oklab:</div>
+            <div class="gradient oklab"></div>
+            <div>Oklch:</div>
+            <div class="gradient oklch"></div>
+        </section>
+         <section id="ex-3">
+            <h1>Example 3</h1>
+            <div>sRGB:</div>
+            <div class="gradient srgb"></div>
+            <div>Oklab:</div>
+            <div class="gradient oklab"></div>
+            <div>Oklch:</div>
+            <div class="gradient oklch"></div>
+        </section>
+
+         <section id="ex-4">
+            <h1>Example 4</h1>
+            <div>sRGB:</div>
+            <div class="gradient srgb"></div>
+            <div>Oklab:</div>
+            <div class="gradient oklab"></div>
+            <div>Oklch:</div>
+            <div class="gradient oklch"></div>
+        </section>
+        <section id="ex-2">
+            <h1>Example 2</h1>
+            <div>sRGB:</div>
+            <div class="gradient srgb"></div>
+            <div>Oklab:</div>
+            <div class="gradient oklab"></div>
+            <div>Oklch:</div>
+            <div class="gradient oklch"></div>
+        </section>
+
+        <section id="ex-5">
+            <h1>Example 5</h1>
+            <div>sRGB:</div>
+            <div class="gradient srgb"></div>
+            <div>Oklab:</div>
+            <div class="gradient oklab"></div>
+            <div>Oklch:</div>
+            <div class="gradient oklch"></div>
+        </section>
+    </section>
+</body>
+
+</html>
