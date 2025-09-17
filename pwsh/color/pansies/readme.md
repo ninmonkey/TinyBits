@@ -5,9 +5,14 @@ Console colors using the `pansies` module
 - [Compare-Gradient-Colorspaces.ps1](./Compare-Gradient-Colorspaces.ps1)
 - [ArgumentCompleter-For-RgbColor.ps1](./ArgumentCompleter-For-RgbColor.ps1) - Add **Pansies**'s `[RgbColor]` to your functions
 - [Automatic BackgroundColors WithContrast.ps1](./AutoBackgroundColor-WithContrast.ps1) - Calculate background colors with contrast
+- [Piping-GetGradient-to-Complement-directly.ps1](./Piping-GetGradient-to-Complement-directly.ps1) - Pipe `Get-Gradient` to `Get-Complement`
 
 
 **Examples**
+
+![img](./screenshot/Pipeline-HighContrast.png)
+
+From [Piping-GetGradient-to-Complement-directly.ps1](./Piping-GetGradient-to-Complement-directly.ps1)
 
 ![img](./screenshot/Compare-Gradient-Colorspaces.png)
 
