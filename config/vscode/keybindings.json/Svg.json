@@ -1,0 +1,22 @@
+[
+    {
+        /* 
+    modified: 2025-09-18
+    desc: for 'svg' files: quickly swap between text editing and the 'image preview' modes. ( open both side by side )
+    tags: 🦍, ui, svg, image, live-preview, view
+    */
+        "key": "ctrl+alt+shift+right", // 🦍 to keep: 2025-09-18
+        "command": "reopenActiveEditorWith",
+        "when": "editorTextFocus", //  && editorLangId == 'svg'",
+    },
+    {
+        /* 
+modified: 2025-09-18
+desc: shows [1] quick actions, and [2] quickOpen`workbench.action.quickOpen`
+tags: 🦍, ui, global
+*/
+        "key": "ctrl+alt+shift+right", // 🦍 to keep: 2025-09-18
+        "command": "workbench.action.quickOpenWithModes",
+        "when": "editorTextFocus", //  && editorLangId == 'svg'",
+    },
+]
