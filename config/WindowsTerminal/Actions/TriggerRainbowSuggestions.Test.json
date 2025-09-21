@@ -1,0 +1,19 @@
+{
+    /*
+    about: action for testing experimental.rainbowSuggestions
+    created: 2025-09-20
+    description: hit 'f1' (control palette) then type "nin rain"
+    */
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema-preview",
+    "actions": [
+        {
+            "command": {
+                "action": "sendInput",
+                "input": "git status"
+            },
+            "id": "nin.try-show-rainbow",
+            "name": "nin rainbow \ud83d\udea7 \ud83c\udf08(nin.try-show-rainbow)"
+        },
+    ]
+}
