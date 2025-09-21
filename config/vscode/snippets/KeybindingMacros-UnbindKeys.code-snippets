@@ -1,0 +1,19 @@
+{
+    "Unbind Key - 'keybinding.json' macro": {
+        /* 
+modified: 2025-09-18
+tags: keybinding, vscode, template
+example output:
+
+    { "key": "ctrl+alt+right", "command": "" }, // clear bind: <ctrl+alt+right> 
+
+*/
+        "scope": "json,jsonc,snippets",
+        "prefix": "unbind unbinding json",
+        "description": "template unbind key with empty command in 'keybindings.json'",
+        "body": [
+            "{ \"key\": \"${1:ctrl+alt+right}\", \"command\": \"${2}\" }, /* clear bind: <${1}> */",
+            "$0",
+        ],
+    },
+}
