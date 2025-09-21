@@ -1,0 +1,11 @@
+{
+    //
+    "name": "nintest: \ud83e\udd8d Split Duplicate (with CWD) -NoProfile \ud83e\udd8d",
+    "command": {
+        "action": "splitPane",
+        "splitMode": "duplicate",
+        "profile": "{eb2947a1-0677-52d3-8e34-39b1925d4a18}", // attempting this, but appears ignored
+        // "profile": "pwsh_nop",
+    },
+    "id": "ninTest.SplitDuplicate.WithDir", // 2025-09-20
+}
