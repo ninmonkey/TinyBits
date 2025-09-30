@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Using SVG API</title>
+</head>
+
+<body>
+    <style type="text/css">
+        :root {
+            --from-grad: red;
+            --to-grad: blue;
+            /* --from-grad: red;
+            --to-grad: purple; */
+
+            --bg-from: hsl(0.5turn 70% 50% / .85);
+            --bg-to: hsl(0.75turn 70% 50% / .45);
+            /* background-image: linear-gradient(to right, var(--bg-from), var(--bg-to)); */
+            /* background-color: black; */
+            font-family: 'segoe ui', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+        }
+
+        h1 {
+            font-size: .8rem;
+        }
+
+
+        #root-content {
+            display: block grid;
+            grid-template-columns: 1fr;
+            margin: 5vw;
+        }
+
+        .gradient {
+            height: 50px;
+            width: 100%;
+        }
+
+        .srgb {
+            background-image: linear-gradient(in srgb to right, var(--from-grad), var(--to-grad));
+        }
+
+        .oklab {
+            background-image: linear-gradient(in oklab to right, var(--from-grad), var(--to-grad));
+        }
+
+        .oklch {
+            background-image: linear-gradient(in oklch to right, var(--from-grad), var(--to-grad));
+        }
+
+        #ex-2 {
+            --from-grad: salmon;
+            --to-grad: purple;
+        }
+
+        #ex-3 {
+            --from-grad: salmon;
+            --to-grad: green;
+        }
+
+        #ex-4 {
+            --from-grad: hsl(0.5turn 70% 50% / .85);
+            --to-grad: hsl(0.75turn 70% 50% / .45);
+        }
+
+        #ex-5 {
+            --from-grad: hsl(0.5turn 30% 50% / .85);
+            --to-grad: hsl(0.75turn 30% 50% / .45);
+        }
+    </style>
+
+    <script type="module">
+        const svg = document.getElementById( "some-svg" );
+        const angle = svg.createSVGAngle()
+
+        angle.newValueSpecifiedUnits( SVGAngle.SVG_ANGLETYPE_DEG, 180 )
+
+        window.bag ??= {}
+        window.bag.svg = svg
+        window.bag.angle = angle
+        console.group( 'SVGAngle example' )
+        console.log( 'globals saved to "bag"', window.bag )
+
+        console.log( {
+            'unit is degrees?':
+                bag.angle.unitType == SVGAngle.SVG_ANGLETYPE_DEG,
+            'angle':
+                bag.angle,
+            'value in unit':
+                bag.angle.valueInSpecifiedUnits,
+            'as str':
+                bag.angle.valueAsString,
+                // bag.angle.valueAsString()
+        } )
+
+        bag.angle.convertToSpecifiedUnits( SVGAngle.SVG_ANGLETYPE_RAD )
+        console.log(
+            'converted to radians',
+            bag.angle )
+
+        // bag.angle.convertToSpecifiedUnits( SVGAngle.SVG_ANGLETYPE_UNSPECIFIED )
+        // console.log(
+        //     'converted to turns', // did not auto convert to unitless turns
+        //     bag.angle )
+
+        console.groupEnd()
+
+    </script>
+
+    <p>Tip: Globals are saved to 'bag' in the dev console</p>
+    <section id="root-docs">
+        <h1>Docs</h1>
+        <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/SVGAngle/unitType">API/ <b>SVGAngle/unitType</b></a></li>
+            <li><a href="https://svgwg.org/svg2-draft/types.html#__svg__SVGAngle__unitType">svgwg.org/svg2-draft/ <b>SVGAngle.unitType</b></b></a></li>
+        </ul>
+
+    </section>
+    <svg id="some-svg" width="50%" height="50%">
+        <g id="some-group">
+            <path id="some-path" d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="salmon" />
+        </g>
+    </svg>
+    <section id="root-content">
+        <section id="ex-1">
+
+        </section>
+    </section>
+
+</body>
+
+</html>
