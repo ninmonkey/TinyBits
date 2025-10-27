@@ -10,8 +10,10 @@ $assembly = Add-type -AssemblyName System.Text.Json -PassThru -ea 'stop'
 
 <#
 .SYNOPSIS
-    Convert an enum [ConsoleColor] to text "7" and back into [ConsoleColor] using [Text.Json.JsonSerializer]
+    Convert a class that contains enums to json strings, and back as the original [SomeUser] instances
 .notes
+    This first part uses existing enum types. A later example uses <Serialization.JsonStringEnumConverter<Type>>
+
 See more:
     - https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/customize-properties#enums-as-strings
     - <file:///./Using_JsonStringEnumConverter.ps1>
