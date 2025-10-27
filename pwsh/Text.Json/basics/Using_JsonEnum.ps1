@@ -1,10 +1,9 @@
-﻿#Requires -Version 7
+#Requires -Version 7
 using namespace System.Collections.Generic
 using namespace System.Text
 using namespace System.Text.Json
 using namespace System.Text.Json.Serialization
 using namespace System.Linq
-
 
 $assembly = Add-type -AssemblyName System.Text.Json -PassThru -ea 'stop'
 
@@ -32,33 +31,16 @@ function H1 { # not required. Writes Headers to make output more readable.
     "`n## ${Title}" | Write-Host -fg Green3
 }
 
-# Here's the initial attribute
-# [JsonConverter( [Serialization.JsonStringEnumConverter[System.ConsoleColor]] ) ]
 $enumObj = [System.ConsoleColor]::Gray
 $enumObj | Should -BeOfType ([System.ConsoleColor])
 
-H1 '[ConsoleColor] to using Serialize( obj, enumType )'
+H1 '[ConsoleColor]::Gray to text using: Serialize( obj, enumType )'
 $result = [Text.Json.JsonSerializer]::Serialize( $enumObj, $enumObj.GetType() )
 $result # out: 7
 
-h1 'Round trip a string back into [enum]'
+h1 'Round trip a string back into an [enum]'
 $result = [Text.Json.JsonSerializer]::Deserialize( '7', [ConsoleColor] )
 $result
 
 $result | Should -BeOfType [ConsoleColor]
 $result | Should -Be ([ConsoleColor]::Gray)
-
-
-h1 'Done'
-return
-h1 'Round trip a string back into [enum]'
-$round_trip = [Text.Json.JsonSerializer]::deSerialize( $result, [System.ConsoleColor] )
-$round_trip | Should -BeOfType ([System.ConsoleColor])
-
-$round_trip | Should -be ([System.ConsoleColor]::Gray)
-
-$round_trip = [Text.Json.JsonSerializer]::deSerialize( $result, [System.ConsoleColor] )
-$round_trip
-| Should -BeOfType ([System.ConsoleColor])
-
-[Text.Json.JsonSerializer]::deSerialize( $result,  $enumObj.GetType() ) | Should -BeOfType ([System.ConsoleColor])
