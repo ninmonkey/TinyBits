@@ -16,8 +16,9 @@ $assembly = Add-type -AssemblyName System.Text.Json -PassThru -ea 'stop'
 
 See more:
     - https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/customize-properties#enums-as-strings
-    - <file:///./Using_JsonStringEnumConverter.ps1>
     - <file:///./Using_JsonEnum.ps1>
+    - <file:///./Using_UserDefinedEnums.ps1>
+    - <file:///./Using_JsonStringEnumConverter.ps1>
 
 try:
     [Text.Json.JsonSerializer] | Find-Member Serialize
