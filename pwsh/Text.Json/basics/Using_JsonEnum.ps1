@@ -5,6 +5,7 @@ using namespace System.Text.Json
 using namespace System.Text.Json.Serialization
 using namespace System.Linq
 
+$error.clear()
 $assembly = Add-type -AssemblyName System.Text.Json -PassThru -ea 'stop'
 
 <#
@@ -16,8 +17,8 @@ See more:
     - <file:///./Using_JsonStringEnumConverter.ps1>
     - <file:///./Using_JsonEnum.ps1>
 
-.example
-    [Text.Json.JsonSerializer] | fime Serialize
+try:
+    [Text.Json.JsonSerializer] | Find-Member Serialize
 #>
 
 @(  # Not required, they are used to make example output nicer

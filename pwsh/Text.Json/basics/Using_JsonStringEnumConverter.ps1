@@ -8,6 +8,19 @@ using namespace System.Linq
 $error.clear()
 $assembly = Add-type -AssemblyName System.Text.Json -PassThru -ea 'stop'
 
+<#
+.SYNOPSIS
+    Convert an enum [ConsoleColor] to text "7" and back into [ConsoleColor] using [Text.Json.JsonSerializer]
+.notes
+See more:
+    - https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/customize-properties#enums-as-strings
+    - <file:///./Using_JsonStringEnumConverter.ps1>
+    - <file:///./Using_JsonEnum.ps1>
+
+try:
+    [Text.Json.JsonSerializer] | Find-Member Serialize
+#>
+
 @(  # Not required, they are used to make example output nicer
     Import-Module ClassExplorer -PassThru
     Import-Module Pester -MinimumVersion 5.1 -PassThru
@@ -19,15 +32,6 @@ function H1 { # not required
     "`n## ${Title}" | Pansies\Write-Host -fg Green3
 }
 
-<#
-.notes
-See more:
-
-    - https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/customize-properties#enums-as-strings
-
-.example
-    [Text.Json.JsonSerializer] | fime Serialize
-#>
 class SomeUser {
     <#
     .SYNOPSIS
@@ -82,10 +86,12 @@ $after_cast = [SomeUser] ( $json_text | ConvertFrom-Json )
 $after_cast.ColorFg | SHould -Be ([ConsoleColor]::Red)
 $after_cast.ColorFg | SHould -BeOfType ([ConsoleColor])
 
-h1 'fin'
-$after_cast
+h1 'Without Cmdlet, Using [Json.JsonSerializer]'
+$obj_1 = [Text.Json.JsonSerializer]::Deserialize( $json_text, $user.GetType() )
+$obj_2 = [Text.Json.JsonSerializer]::Deserialize( $json_text, [SomeUser] )
 
-# ( [SomeUser] $round_trip ).ColorFg | SHould -Be ([consolecolor]::Red)
-# ( [SomeUser] $round_trip ).ColorFg | SHould -BeOfType ([consolecolor])
-
-# h1 'Fin'
+# Assert both work
+$obj_1 | Should -BeOfType ([SomeUser])
+$obj_1.ColorFg | Should -BeOfType ([System.ConsoleColor]) -Because 'Should auto cast into an enum'
+$obj_2 | Should -BeOfType ([SomeUser])
+$obj_2.ColorFg | Should -BeOfType ([System.ConsoleColor]) -Because 'Should auto cast into an enum'
