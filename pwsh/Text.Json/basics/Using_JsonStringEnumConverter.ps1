@@ -5,21 +5,8 @@ using namespace System.Text.Json
 using namespace System.Text.Json.Serialization
 using namespace System.Linq
 
-
+$error.clear()
 $assembly = Add-type -AssemblyName System.Text.Json -PassThru -ea 'stop'
-
-<#
-.SYNOPSIS
-    Convert an enum [ConsoleColor] to text "7" and back into [ConsoleColor] using [Text.Json.JsonSerializer]
-.notes
-See more:
-    - https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/customize-properties#enums-as-strings
-    - <file:///./Using_JsonStringEnumConverter.ps1>
-    - <file:///./Using_JsonEnum.ps1>
-
-.example
-    [Text.Json.JsonSerializer] | fime Serialize
-#>
 
 @(  # Not required, they are used to make example output nicer
     Import-Module ClassExplorer -PassThru
@@ -27,38 +14,78 @@ See more:
     Import-Module Pansies -PassThru
 ) | Join-String -P { $_.Name, $_.Version } -f "- {0}" -sep "`n" | Pansies\Write-Host -fg 'gray40' -bg 'gray20'
 
-function H1 { # not required. Writes Headers to make output more readable.
+function H1 { # not required
     param( [String] $Title = 'Header' )
-    "`n## ${Title}" | Write-Host -fg Green3
+    "`n## ${Title}" | Pansies\Write-Host -fg Green3
 }
 
-# Here's the initial attribute
+<#
+.notes
+See more:
+
+    - https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/customize-properties#enums-as-strings
+
+.example
+    [Text.Json.JsonSerializer] | fime Serialize
+#>
+class SomeUser {
+    <#
+    .SYNOPSIS
+        A class that has fields of enum types, to attempt round trips
+    #>
+    [string] $Name = 'anonymous'
+    [ConsoleColor] $ColorFg = 'red'
+}
+
 # [JsonConverter( [Serialization.JsonStringEnumConverter[System.ConsoleColor]] ) ]
-$enumObj = [System.ConsoleColor]::Gray
-$enumObj | Should -BeOfType ([System.ConsoleColor])
+# $enumObj = [System.ConsoleColor]::Gray
+# $enumObj | Should -BeOfType ([System.ConsoleColor])
 
-H1 '[ConsoleColor] to using Serialize( obj, enumType )'
-$result = [Text.Json.JsonSerializer]::Serialize( $enumObj, $enumObj.GetType() )
-$result # out: 7
+# H1 '[ConsoleColor] to using Serialize( obj, enumType )'
+# $result = [Text.Json.JsonSerializer]::Serialize( $enumObj, $enumObj.GetType() )
+# $result # out: 7
 
-h1 'Round trip a string back into [enum]'
-$result = [Text.Json.JsonSerializer]::Deserialize( '7', [ConsoleColor] )
-$result
+h1 'ConvertTo-Json Style'
+$user = [SomeUser]::new()
+$user | ConvertTo-Json -EnumsAsStrings
 
-$result | Should -BeOfType [ConsoleColor]
-$result | Should -Be ([ConsoleColor]::Gray)
-
-
-h1 'Done'
-return
-h1 'Round trip a string back into [enum]'
-$round_trip = [Text.Json.JsonSerializer]::deSerialize( $result, [System.ConsoleColor] )
-$round_trip | Should -BeOfType ([System.ConsoleColor])
-
-$round_trip | Should -be ([System.ConsoleColor]::Gray)
-
-$round_trip = [Text.Json.JsonSerializer]::deSerialize( $result, [System.ConsoleColor] )
+h1 'ConvertFrom-Json Style'
+$round_trip = $user | ConvertTo-Json -EnumsAsStrings | ConvertFrom-Json
 $round_trip
-| Should -BeOfType ([System.ConsoleColor])
 
-[Text.Json.JsonSerializer]::deSerialize( $result,  $enumObj.GetType() ) | Should -BeOfType ([System.ConsoleColor])
+h1 'Try Casting to [SomeUser]'
+$as_class = [SomeUser] $round_trip
+$as_class.GetType
+$as_class | Should -BeOfType 'SomeUser' -Because 'Otherwise casting has failed'
+
+
+get-date | ft -auto
+h1 'using Serialize( obj, [SomeUser] )'
+# $result = [Text.Json.JsonSerializer]::Serialize( $enumObj, $enumObj.GetType() )
+$json_text = [Text.Json.JsonSerializer]::Serialize( $user, $user.GetType() )
+$json_text | jq -c
+
+h1 'Try Casting [SomeUser] using PSCO from ConvertFrom-Json'
+$round_trip_cmdlet = ( $json_text | ConvertFrom-Json ) -as [SomeUser]
+$round_trip_cmdlet
+
+h1 'assert: GetType().Name'
+$round_trip_cmdlet | Should -BeOfType ([SomeUser]) -Because 'Otherwise casting has failed'
+$round_trip_cmdlet.GetType().Name
+
+h1 'assert: SomeUser.ConsoleColor type'
+$round_trip.ColorFg | Should -Be ([ConsoleColor]::Red)
+# $round_trip.ColorFg | Should -BeOfType ([ConsoleColor]) -Because 'Expect fail because ConvertFrom-Json Cmdlet did not construct class instance of [SomeUser] atype'# -ea 'Continue'
+
+h1 'assert: is correct after casting ConvertFrom-Json output as [SomeUser] type'
+$after_cast = [SomeUser] ( $json_text | ConvertFrom-Json )
+$after_cast.ColorFg | SHould -Be ([ConsoleColor]::Red)
+$after_cast.ColorFg | SHould -BeOfType ([ConsoleColor])
+
+h1 'fin'
+$after_cast
+
+# ( [SomeUser] $round_trip ).ColorFg | SHould -Be ([consolecolor]::Red)
+# ( [SomeUser] $round_trip ).ColorFg | SHould -BeOfType ([consolecolor])
+
+# h1 'Fin'
