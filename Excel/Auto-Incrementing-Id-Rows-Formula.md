@@ -1,4 +1,4 @@
-![screenshot of rows](./Auto-Incrementing-Id-Rows-Formula.png)
+![screenshot of rows](./img/Auto-Incrementing-Id-Rows-Formula.png)
 
 If `D` is a column you can use `D.:.D`
 
