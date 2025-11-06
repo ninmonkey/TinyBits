@@ -84,6 +84,11 @@ git log --pretty=oneline -n 5 --abbrev-commit --abbrev=3
 h1 'Ex: --shortstat'
 git log --pretty=oneline -n 7 --abbrev-commit --abbrev=3 --shortstat
 
+h1 'Ex: --numstat'
+git log -n 3 --pretty=oneline --numstat  --abbrev-commit --abbrev=3
+
+h1 'Ex: --stat'
+git log -n 3 --pretty=oneline --stat  --abbrev-commit --abbrev=3
 
 h1 'Done'
 
