@@ -27,15 +27,19 @@ let
         SplitColumnPairs( source, "Inventory",  ";", type number ),
         SplitColumnPairs( source, "Sale",       ";", Currency.Type  ),
     */
-    SplitColumnPairs = (source as table, columnName as text, delimiter as text, optional valueColumnType as nullable type )
-        as table => [
+    SplitColumnPairs = (
+        source as table,
+        columnName as text,
+        delimiter as text,
+        optional valueColumnType as nullable type
+    ) as table => [
             splitByFunc     = Splitter.SplitTextByEachDelimiter( { delimiter }, QuoteStyle.Csv, true ),
             columnValueName = columnName & " Value",
 
             AfterColSplit   = Table.SplitColumn( source, columnName, splitByFunc,
                 { columnName, columnValueName }, null,  ExtraValues.Error ),
 
-            return          = Table.TransformColumnTypes(AfterColSplit,{
+            return = Table.TransformColumnTypes( AfterColSplit,{
                 { columnName, type text }, { columnValueName, valueColumnType ?? Int64.Type }
             })
         ][return],

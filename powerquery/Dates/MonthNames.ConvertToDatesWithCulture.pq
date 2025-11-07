@@ -18,12 +18,14 @@ let
                 // {  List.Transform( rows, (item) => { item }  ) }
             ),
 
-        en = {
-            "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
-        },
-        es = { "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" },
+        en = { "January", "February", "March", "April", "May", "June", "July",
+               "August", "September", "October", "November", "December" },
 
-        de = { "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" }
+        es = { "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
+               "agosto", "septiembre", "octubre", "noviembre", "diciembre" },
+
+        de = { "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli",
+               "August", "September", "Oktober", "November", "Dezember" }
     ][return],
 
     // The only actual step: Convert using culture and format strings
