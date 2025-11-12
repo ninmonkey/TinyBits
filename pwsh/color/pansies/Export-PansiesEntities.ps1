@@ -10,6 +10,11 @@
 # You can lookup entities from the <SortedList<string, string>> Emoji = ...
 # [PoshCode.Pansies.Entities]::Emoji['zombie']
 
+# Escapes ansi escape color sequences, to make it human visible
+filter ShowEscape { $_ -replace '\x1b', '`e' }
+# Convert sequence to inline expressions for strings
+filter EscapeAsExpression { $_ -replace '\x1b', '$([char]27)' }
+
 function TextToCodepointsString {
     <#
     .SYNOPSIS
@@ -45,8 +50,10 @@ function DecodeAs {
     .SYNOPSIS
         Decodes string into bytes using specified encoding
     #>
+    [CmdletBinding()]
     param(
         # Bytes to decode as some text
+        [Parameter(Mandatory)]
         [byte[]] $Bytes,
 
         # EncodingInfo Name
@@ -55,6 +62,7 @@ function DecodeAs {
     )
     try { $enc = [Text.Encoding]::GetEncoding( $EncodingName ) }
     catch { throw }
+    if( $bytes.count -eq 0 ) { throw "Bytes was null or empty!" }
 
     $Text = $enc.GetString( $Bytes )
 
@@ -75,6 +83,7 @@ function EncodeAs {
     #>
     param(
         # Text to encode
+        [Parameter(Mandatory)]
         [string] $Text,
 
         # EncodingInfo Name
@@ -141,10 +150,10 @@ $out = EncodeAs -Text $src -EncodingName 'utf-8'
 
 'show correct, and incorrect decodings' | Write-Host -fg 'tomato'
 @(
-    DecodeAs -Bytes $bytes.Bytes -EncodingName 'utf-8'
-    DecodeAs -Bytes $bytes.Bytes -EncodingName 'utf-16'
-    DecodeAs -Bytes $bytes.Bytes -EncodingName 'utf-16le'
-    DecodeAs -Bytes $bytes.Bytes -EncodingName 'ascii'
+    DecodeAs -Bytes $out.Bytes -EncodingName 'utf-8'
+    DecodeAs -Bytes $out.Bytes -EncodingName 'utf-16'
+    DecodeAs -Bytes $out.Bytes -EncodingName 'utf-16le'
+    DecodeAs -Bytes $out.Bytes -EncodingName 'ascii'
 ) | Ft -auto
 
 # $out = EncodeAs -Text $src -EncodingName 'utf-8'
