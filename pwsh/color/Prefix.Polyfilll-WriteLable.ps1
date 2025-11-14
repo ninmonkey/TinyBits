@@ -1,12 +1,15 @@
-﻿<# common init #>
+﻿$global:StringModule_DontInjectJoinString = $true # this matters, because Nop imports the polyfill which breaks code on Join-String:  context/reason: <https://discord.com/channels/180528040881815552/446531919644065804/1181626954185724055> or just delete the module
 
-Import-Module Pansies -PassThru -DisableNameChecking
+<# common init #>
+
+Import-Module Pansies -PassThru:$False -DisableNameChecking
 Set-Alias -Force -ea 'stop' -Name 'Join-String' -Value Microsoft.PowerShell.Utility\Join-String -PassThru -desc 'Prevent that one module from loading'
     | Out-Null
 
 
 <# Start 2025-09-22 #>
-function Prefix {
+function Snippet.Prefix {
+    [Alias('Prefix')]
     <#
     .SYNOPSIS
         some nicer colors. nin polyfill 2025-09-22
