@@ -14,9 +14,15 @@ Depending on the version of dotnet it uses [StringComparer.CurrentCulture] vs [S
 
 ### See more
 
+- [breaking changes in dotnet ~5](https://learn.microsoft.com/en-us/dotnet/standard/base-types/string-comparison-net-5-plus)
+    - then [breaking change notification](https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/icu-globalization-api)
+
+> You can run code analysis rules CA1307: Specify StringComparison for clarity and CA1309: Use ordinal StringComparison to find these call sites in your code.
+
 - https://github.com/dotnet/dotnet/blame/c22dcd0c7a78d095a94d20e59ec0271b9924c82c/src/runtime/src/libraries/System.Private.CoreLib/src/System/String.Comparison.cs#L600C13-L609C77
     - from: https://learn.microsoft.com/en-us/dotnet/api/system.string.endswith?view=net-10.0
 - [Best practices for comparing strings in dotnet](https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings)
+- [docs on Globalization ICU](https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization-icu)
 
 ### dotnet code
 
@@ -42,6 +48,13 @@ $pre.EndsWith( "foo" )
 
 $pre.EndsWith( "foo`0`0" )
     # True
+
+<# If you want the shorthand overload, you can use a string #>
+
+'abc'.EndsWith("`u{0}`u{0}", 'CurrentCulture' )
+    # true
+'abc'.EndsWith("`u{0}`u{0}", 'Ordinal' )
+    # false
 
 
 "`0`0cat".IndexOfAny( "`0" )
@@ -86,6 +99,12 @@ $pre.EndsWith( "foo`0`0" )
 [System.StringComparer]::CurrentCulture.GetType().fullname
     # is a: [System.CultureAwareComparer]
     # from: new CultureAwareComparer(CultureInfo.CurrentCulture, CompareOptions.None);
+
+<# or using this overload #>
+[System.StringComparer]::FromComparison( <# [StringComparison] #> 'ordinal')
+[System.StringComparer]::FromComparison( <# [StringComparison] #> 'CurrentCulture')
+
+
 
 <# more ... #>
 
