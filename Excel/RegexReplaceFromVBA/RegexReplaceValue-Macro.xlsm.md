@@ -17,7 +17,7 @@ Function RegexReplaceWith(original As String, pattern As String, replacement As 
 End Function
 
 
-Sub replacewithdate()
+Sub ReplaceTemplateWithParams()
 '
 ' replace multiple patterns with a variable 
 
