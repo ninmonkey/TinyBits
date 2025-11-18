@@ -43,3 +43,16 @@ Sub ReplaceTemplateWithParams()
     
 End Sub
 ```
+
+## Excel Formula, No VB solution
+
+```ts
+= LET(
+  source, A3,
+  dateNow, TODAY(),
+  renderDate, TEXT( dateNow, "yyyy-MM-dd" ),
+  final, REGEXREPLACE( source, "#date#", renderDate, 0, 1),
+  final
+)
+```
+
