@@ -26,10 +26,53 @@ function H1 {
         | Write-Host -fg Purple3 -bg (Get-Complement -Color 'Purple3' -HighContrast)
     "`n"
 }
+
+function TinyBits.Gh.Repos.List {
+    <#
+    .synopsis
+        Wraps 'gh repo list ..' with parameters
+    .notes
+        Original command:
+            > gh repo list --source --limit 4 --json ($example_fields -join ',' )
+    .LINK
+        TinyBits.Gh.Repos.List
+    .LINK
+        TinyBits.Gh.GetAllJsonFields
+    .LINK
+        TinyBits.Fzf.Select
+    #>
+    [CmdletBinding()]
+    param(
+    )
+
+
+    $ghArgs = @( $SubCommand, '--json' )
+    $binGh  = Get-Command 'gh' -CommandType Application -TotalCount 1 -ea 'stop'
+    $ghArgs | Join-String -sep ' ' -op ' => ran gh: ' | Write-Host -fg 'gray70' -bg 'gray30'
+    # $stdout = & $binGh @ghArgs # original: repo list --json *>&1
+    $stdout = & $binGh @ghArgs *>&1
+
+    # gh repo list --source --limit 4 --json ($example_fields -join ',' )
+    # gh repo list --source --limit 4 --json ($example_fields -join ',' )
+
+}
 function TinyBits.Gh.GetAllJsonFields {
     <#
     .synopsis
         Detect which json fields are valid for each 'gh subcommand --json ...' parameters
+    .example
+        > TinyBits.Gh.GetAllJsonFields 'repo', 'list'
+    .example
+        > $selected_names = TinyBits.Gh.GetAllJsonFields 'repo', 'list'
+            | TinyBits.Fzf.Select # -Cached
+
+        > gh repo list --source --limit 4 --json ($selected_names -join ',')
+    .LINK
+        TinyBits.Gh.Repos.List
+    .LINK
+        TinyBits.Gh.GetAllJsonFields
+    .LINK
+        TinyBits.Fzf.Select
     #>
     [OutputType([String[]])]
     [CmdletBinding()]
@@ -56,37 +99,28 @@ function TinyBits.Gh.GetAllJsonFields {
 
 function TinyBits.Fzf.Select {
     <#
-
-        $Choices | fzf --multi --tac --gap=3 --gap-line='___'
+    .synopsis
+        Wraps 'fzf --multi' select command. Optional one key only cached value
+    .LINK
+        TinyBits.Gh.Repos.List
+    .LINK
+        TinyBits.Gh.GetAllJsonFields
+    .LINK
+        TinyBits.Fzf.Select
     #>
     param(
-        # Only prompt once, save as cached value
+        # Only prompt once, save as cached value. # Future, change to -CachedName [string] to allow multiple cached values based on caller
         [switch] $Cached
     )
 
     if( $Cached -and $Script:__tinyBitsCache.LastFzfSelect.Count -gt 0  ) {
         return $Script:__tinyBitsCache.LastFzfSelect
     }
-
     $choices = @( $Input )
     $Selected = $choices | fzf --multi --tac --layout=reverse --gap=1 --gap-line=''
-    # reverse and reverse-list appear the same ?
-
+    # do reverse and reverse-list appear the same ?
     $Script:__tinyBitsCache.LastFzfSelect = $Selected
-
     return $selected
-
-
-
-    # $choices | fzf --multi --tac --gap=3 --gap-line='___'
-    # [CmdletBinding()]
-    # param(
-    #     [Parameter(Mandatory, ValueFromPipeline )]
-    #     [string[]] $Choices
-    # )
-    # begin {
-
-    # }
 }
 
 
@@ -104,10 +138,31 @@ function TinyBits.Fzf.Select {
     $fields = ($rawTags -join'').ForEach({ $_.trim() }) -split ',\s+' | Sort-Object
 #>
 
-$selected_names = TinyBits.Gh.GetAllJsonFields 'repo', 'list' | TinyBits.Fzf.Select -Cached
-$selected_names | Join-String -op '$selected_names: ' -sep ', ' -single | Write-Verbose -Verbose
+# built from command: TinyBits.Gh.GetAllJsonFields -SubCommand 'repo', 'list' |sort-object | join-string -sep ', ' -SingleQuote
+$example_fields = @(
+    'archivedAt', 'assignableUsers', 'codeOfConduct', 'contactLinks', 'createdAt', 'defaultBranchRef', 'deleteBranchOnMerge', 'description', 'diskUsage', 'forkCount', 'fundingLinks', 'hasDiscussionsEnabled', 'hasIssuesEnabled', 'hasProjectsEnabled', 'hasWikiEnabled', 'homepageUrl', 'id', 'isArchived', 'isBlankIssuesEnabled', 'isEmpty', 'isFork', 'isInOrganization', 'isMirror', 'isPrivate', 'isSecurityPolicyEnabled', 'issues', 'issueTemplates', 'isTemplate', 'isUserConfigurationRepository', 'labels', 'languages', 'latestRelease', 'licenseInfo', 'mentionableUsers', 'mergeCommitAllowed', 'milestones', 'mirrorUrl', 'name', 'nameWithOwner', 'openGraphImageUrl', 'owner', 'parent', 'primaryLanguage',
+        # 'projects', 'projectsV2',
+        'pullRequests', 'pullRequestTemplates', 'pushedAt', 'rebaseMergeAllowed', 'repositoryTopics', 'securityPolicyUrl', 'squashMergeAllowed', 'sshUrl', 'stargazerCount', 'templateRepository', 'updatedAt', 'url', 'usesCustomOpenGraphImage', 'viewerCanAdminister', 'viewerDefaultCommitEmail', 'viewerDefaultMergeMethod', 'viewerHasStarred', 'viewerPermission', 'viewerPossibleCommitEmails', 'viewerSubscription', 'visibility', 'watchers' )
+
+# Example usage:
+return
+
+$selected_names =
+    TinyBits.Gh.GetAllJsonFields 'repo', 'list'
+        | TinyBits.Fzf.Select -Cached
+
+gh repo list --source --limit 4 --json ($selected_names -join ',')
+
+$selected_names
+    | Join-String -op '$selected_names: ' -sep ', ' -single | Write-Verbose -Verbose
 
 # popd -stack 'TinyBits.Gh' -ea ignore
 
 
 pwd
+return
+# original script:
+
+$error.clear(); . $dotSrc; $all_fields =  TinyBits.Gh.GetAllJsonFields 'repo', 'list'
+$sel = $all_fields | TinyBits.Fzf.Select # -Cached
+$sel|sort -p { , @( ($_ -match 'name'), ($_ -match 'url') ) } -Descending
