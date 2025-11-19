@@ -27,30 +27,114 @@ function H1 {
     "`n"
 }
 
-function TinyBits.Gh.Repos.List {
+function TinyBits.Gh.Repo.List {
     <#
     .synopsis
         Wraps 'gh repo list ..' with parameters
     .notes
         Original command:
             > gh repo list --source --limit 4 --json ($example_fields -join ',' )
+
+        **Future**:
+          - PassThru should use PsTypeName for formatting, and default fields:
+          - Date fiels
+| ft NameWithOwner, Watchers, updatedAt, url
+    .example
+        > $static_names = @( 'archivedAt', 'createdAt', 'homepageUrl', 'latestRelease', 'name', 'nameWithOwner', 'pushedAt',
+            'sshUrl', 'updatedAt', 'url', 'watchers' )
+
+        > TinyBits.Gh.Repo.List SeeminglyScience -Limit 4 -Source -JsonFields $static_names | jq
+
+    .example
+        # save results as objects plus, plus formatting as table
+        > ( $found = TinyBits.Gh.Repo.List SeeminglyScience -Limit 4 -Source -JsonFields $static_names -PassThru )
+            | ft NameWithOwner, Watchers, updatedAt, url
+    .example
+        > TinyBits.Gh.Repo.List -Source -Limit 3 -JsonFields 'name', 'nameWithOwner' | ConvertFrom-Json | ft -AutoSize
+    .example
+        # Find both (archived + fork) for justin:
+        > TinyBits.Gh.Repo.List JustinGrote -Archived -Fork
     .LINK
-        TinyBits.Gh.Repos.List
+        https://cli.github.com/manual/gh_repo_list
+    .LINK
+        TinyBits.Gh.Repo.List
     .LINK
         TinyBits.Gh.GetAllJsonFields
     .LINK
         TinyBits.Fzf.Select
     #>
+    # [Alias('Gh.Repo.List')]
     [CmdletBinding()]
     param(
+        # gh: gh repo list <owner>
+        [string] $Owner,
+
+        # If you want a fast response, do not specify '--Json=<csv>', instead use implicit defaults
+        # gh: --json
+        [Alias('JsonFields')]
+        [string[]] $FieldNames,
+
+        # gh: --limit int
+        [int] $Limit, # = 30,
+
+        # show only non-forks
+        # gh: --source
+        [switch] $Source,
+
+        # show only forks
+        # gh: --fork
+        [switch] $Fork,
+
+        # show only archived
+        # gh: --archived
+        [switch] $Archived,
+
+        # gh: --visiblity <string>
+        [ArgumentCompletions('public', 'private', 'internal' )]
+        [string] $Visibility,
+
+        [string] $JqExpression,
+
+        # Should --json queries return as objects rather than json ?
+        [Alias('PassThru')]
+        [switch] $AsObject,
+
+        # If true, build the command line arguments but don't actually invoke 'gh'. ( Not a real ShouldProcess/WhatIf )
+        [Alias('WhatIf')]
+        [switch] $TestOnly
     )
 
-
-    $ghArgs = @( $SubCommand, '--json' )
     $binGh  = Get-Command 'gh' -CommandType Application -TotalCount 1 -ea 'stop'
-    $ghArgs | Join-String -sep ' ' -op ' => ran gh: ' | Write-Host -fg 'gray70' -bg 'gray30'
+
+    $ghArgs = @(
+        # usage: gh repo list [<owner>] [flags]
+        'repo', 'list'
+        if( -not [string]::IsNullOrWhiteSpace( $Owner ) ) { $Owner }
+
+        if ( $Source ) { '--source' }
+        if ( $Fork ) { '--fork' }
+        if ( $Archived ) { '--archived' }
+
+        if ( $Limit ) { '--limit', $Limit }
+
+        if( $FieldNames.count -gt 0 ) {
+            # also works: if( [string]::IsNullOrWhiteSpace( $constraint_str ) ) { }
+            '--json'
+            ($fieldNames -join ',')
+        }
+        if( -not [string]::IsNullOrWhiteSpace( $JqExpression ) ) { '--jq', $JqExpression  }
+    )
+    $ghArgs | Join-String -sep ' ' -op ' invoke => gh ' | Write-Host -fg 'gray70' -bg 'gray30'
+    if( $TestOnly ) { '-TestOnly skipped invoking gh.'  | Write-Verbose ; return; }
+    $results = & $binGh @ghArgs
+
+    if( $AsObject ) {
+        return $results | ConvertFrom-Json -Depth 9
+    }
+
+    return $results
     # $stdout = & $binGh @ghArgs # original: repo list --json *>&1
-    $stdout = & $binGh @ghArgs *>&1
+    # $stdout = & $binGh @ghArgs *>&1
 
     # gh repo list --source --limit 4 --json ($example_fields -join ',' )
     # gh repo list --source --limit 4 --json ($example_fields -join ',' )
@@ -67,8 +151,11 @@ function TinyBits.Gh.GetAllJsonFields {
             | TinyBits.Fzf.Select # -Cached
 
         > gh repo list --source --limit 4 --json ($selected_names -join ',')
+    .EXAMPLE
+        > $maybeFields = $example_fields -match 'name|url' | Sort-Object
+        > TinyBits.Gh.Repo.List JustinGrote -Limit 4 -Source -JsonFields $maybeFields | jq -c
     .LINK
-        TinyBits.Gh.Repos.List
+        TinyBits.Gh.Repo.List
     .LINK
         TinyBits.Gh.GetAllJsonFields
     .LINK
@@ -102,7 +189,7 @@ function TinyBits.Fzf.Select {
     .synopsis
         Wraps 'fzf --multi' select command. Optional one key only cached value
     .LINK
-        TinyBits.Gh.Repos.List
+        TinyBits.Gh.Repo.List
     .LINK
         TinyBits.Gh.GetAllJsonFields
     .LINK
@@ -144,8 +231,24 @@ $example_fields = @(
         # 'projects', 'projectsV2',
         'pullRequests', 'pullRequestTemplates', 'pushedAt', 'rebaseMergeAllowed', 'repositoryTopics', 'securityPolicyUrl', 'squashMergeAllowed', 'sshUrl', 'stargazerCount', 'templateRepository', 'updatedAt', 'url', 'usesCustomOpenGraphImage', 'viewerCanAdminister', 'viewerDefaultCommitEmail', 'viewerDefaultMergeMethod', 'viewerHasStarred', 'viewerPermission', 'viewerPossibleCommitEmails', 'viewerSubscription', 'visibility', 'watchers' )
 
-# Example usage:
+# exit before Examples
 return
+
+$full_list ??= TinyBits.Gh.GetAllJsonFields -SubCommand 'repo', 'list'
+$dynamic_names = $full_list -match
+     'name|url|owner|date|updated|at' -notmatch
+     'security|^owner$|mirrorUrl|openGraphImage' -notmatch
+     '^is|template'
+     | Sort-Object
+
+TinyBits.Gh.Repo.List JustinGrote -Limit 20 -Source -JsonFields $dynamic_names
+    # out: json
+
+TinyBits.Gh.Repo.List JustinGrote -Limit 20 -Source -JsonFields $dynamic_names | ConvertFrom-Json
+    # out: PSCustomObject to table
+
+
+# Examples: Older
 
 $selected_names =
     TinyBits.Gh.GetAllJsonFields 'repo', 'list'
@@ -156,11 +259,7 @@ gh repo list --source --limit 4 --json ($selected_names -join ',')
 $selected_names
     | Join-String -op '$selected_names: ' -sep ', ' -single | Write-Verbose -Verbose
 
-# popd -stack 'TinyBits.Gh' -ea ignore
 
-
-pwd
-return
 # original script:
 
 $error.clear(); . $dotSrc; $all_fields =  TinyBits.Gh.GetAllJsonFields 'repo', 'list'
