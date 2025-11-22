@@ -33,3 +33,24 @@ $some | fime -ReturnType { [any[]] } | Ft
 
 # find ambiguous methods
 [timezoneinfo]|fime -Name '*ambig*' | ft
+
+
+
+$dto_utcNow = [DateTimeoffset]::UtcNow
+$now        = [Datetime]::Now
+$tz_east    = [Timezoneinfo]::FindSystemTimeZoneById('Eastern Standard Time')
+
+$now        = [Datetime]::Now
+$tz_east    = [Timezoneinfo]::FindSystemTimeZoneById('Eastern Standard Time')
+
+[DateTime] $east_now = [TimeZoneInfo]::ConvertTime(
+    $now,
+    [TimeZoneInfo]::Local,
+    $tz_east
+)
+
+$now, $east_now | Join-String -sep ', '
+$now, $east_now
+# <# DateTimeOffset #> ConvertTime(DateTimeOffset dateTimeOffset, TimeZoneInfo destinationTimeZone);
+#< DateTime       #> ConvertTime(DateTime dateTime, TimeZoneInfo destinationTimeZone);
+# DateTime ConvertTime(DateTime dateTime, TimeZoneInfo sourceTimeZone, TimeZoneInfo destinationTimeZone);
