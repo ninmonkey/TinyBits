@@ -7,6 +7,12 @@ Add-Type -AssemblyName System.Windows.Forms
     https://learn.microsoft.com/en-us/windows/win32/dataxchg/html-clipboard-format
 .LINK
     https://github.com/dotnet/winforms/blob/62ebdb4b0d5cc7e163b8dc9331dc196e576bf162/src/System.Windows.Forms/src/System/Windows/Forms/OLE/DataObject.cs
+.LINK
+    https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.dataformats?view=windowsdesktop-9.0
+.LINK
+    https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.clipboard?view=windowsdesktop-9.0
+.LINK
+    https://learn.microsoft.com/en-us/windows/win32/dataxchg/clipboard-operations
 .NOTES
 
 HTML uses clipboard type 'CF_HTML'
@@ -65,15 +71,17 @@ function Test-ClipboardDataPresent {
         | Find-Member -MemberType Field
         | % Name | Sort-Object -Unique
 
-    if( -not $PSBoundParameters.ContainsKey('DataObject') ) {
+    if( -not $PSBoundParameters.ContainsKey('DataObject') -or $FromClipboard ) {
         $DataObject = [Clipboard]::GetDataObject()
     }
 
+    if( $NameOnly ) { return $DataObject.GetFormats() }
+
     foreach( $name in $format_names ) {
-        if( $NameOnly -and $DataObject.GetDataPresent( $name ) ) {
-            $name
-            continue
-        }
+        # if( $NameOnly ) {
+        #     if( $DataObject.GetDataPresent( $name ) ) { $name }
+        #     continue
+        # }
         [pscustomObject]@{
             DataFormats    = $name
             GetDataPresent = $DataObject.GetDataPresent( $name )
@@ -120,6 +128,23 @@ function Get-ClipboardDataFormat {
     }
 
 }
+write-warning 'wip almost '
+
+return
+if( $true ) {
+    $inline_html = @'
+<b>hi world<b>
+<p>
+<span style="color:red;"> red</span>
+</p>
+'@
+
+    ConvertTo-CFHtml -Html $Html | Set-Clipboard -PassThru
+
+    Test-ClipboardDataPresent -FromClipboard -AsString | Join-String -sep ', ' -op 'found: '
+
+}
+
 
 ( $test_types = Test-ClipboardDataPresent -DataObject $Do )
 $found_types = $test_types | Where-Object GetDataPresent
@@ -130,6 +155,10 @@ $found_types | Join-String -p DataFormats -f ' - {0}' -sep "`n" -op "Data Format
 $query = Get-ClipboardDataFormat -DataObject $do -FormatName $found_types.DataFormats
 $query.count
 
+
+
+
+return
 
 return
 # Get-ClipboardDataFormat -DataObject $c_do -FormatName
