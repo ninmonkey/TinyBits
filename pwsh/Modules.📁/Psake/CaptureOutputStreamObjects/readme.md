@@ -1,6 +1,11 @@
 
+After I found this regression: [psake/psake/#137](https://github.com/psake/psake/issues/137) I was able to modify variables from tasks as I expected / like the docs describe.
 
-## First Attack
+- Here is a Tasks file: [BuildAndEmit-3-WithPropertyRegressionFix.ps1](BuildAndEmit-3-WithPropertyRegressionFix.ps1)
+
+<!--
+
+## First Attempt
 ```ps1
 $return = Invoke-PSake .\BuildAndEmit.ps1
 $return | ? { $_ -isnot [string] }
@@ -22,3 +27,5 @@ $return | ? { 'psake.info' -in  $_.PsTypeNames }
 
 - `InvokeTask-BuildAndEmit-2`
 - `BuildAndEmit-2`
+
+-->
