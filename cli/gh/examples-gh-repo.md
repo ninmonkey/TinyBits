@@ -70,3 +70,47 @@ gh label create # TUI
 gh label list --repo SeeminglyScience/ClassExplorer
 
 ```
+
+### Issues - `gh issue` with custom `--search` queries
+
+- First see: [search queries for github issues](https://docs.github.com/en/search-github/searching-on-github/searching-issues-and-pull-requests)
+
+#### includes commenter `commenter:user`
+
+```ps1
+## Includes commenter
+gh issue list --search 'commenter:SeeminglyScience' -R powershell/powershell
+gh issue list --search 'commenter:ninmonkey' -R powershell/powershell
+```
+
+#### in `title,body`
+```ps1
+## Search 
+gh issue list --search 'OSC in:title'  -R microsoft/terminal
+gh issue list --search 'OSC in:body'  -R microsoft/terminal
+
+gh issue list --search 'error in:title commenter:SeeminglyScience'  -R PowerShell/PowerShell
+gh issue list --search 'error in:title,body commenter:SeeminglyScience'  -R PowerShell/PowerShell
+
+# Multiple terms
+gh issue list --search 'error in:title html in:comments'  -R PowerShell/PowerShell
+```
+
+**other misc**
+
+```ps1
+# Label as query:
+gh issue list --label Command
+gh issue list --search 'label:Command'
+
+gh issue list --search 'commenter:@me'  -R PowerShell/PowerShell
+gh issue list --search 'author:@me'  -R PowerShell/PowerShell
+gh issue list --search 'is:pr commenter:@me'  -R Microsoft/Terminal
+```
+#### Sorting results `sort:created-asc
+
+```ps1
+gh issue list --search 'no:assignee sort:created-asc'
+gh issue list --search 'no:assignee sort:created'
+gh issue list --assignee '@me'
+```
