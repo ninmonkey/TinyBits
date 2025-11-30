@@ -1,3 +1,16 @@
+#requires -PSEdition Core
+#requires -modules ClassExplorer
+
+<#
+.synopsis
+    Encoding and decoding text
+
+.Notes
+See more / Related Types:
+
+ - [System.Text.Encoder]
+ - [System.Text.EncoderFallbackException]
+#>
 
 # helper functions to make the output easier to read
 function ToByteCsv { $Input | Join-string -f '{0:x}' -sep ' ' -op '0x ' }
@@ -8,7 +21,13 @@ function H1 {
 
 $exampleText = 'Foo🐒Bar' # using an example that cannot be encoded as ascii
 
-'$Example = "{0}"' -f $exampleText | Write-Host -fore darkyellow
+H1 'Related types' -fore red
+find-type -Namespace 'System.Text*'
+   | ? Name -Match 'Encoding|encoder|decoding|decoder'
+   | sort namespace, name | Ft -GroupBy namespace
+
+
+h1 "Example = '${exampleText}'"
 
 H1 '[1] $Example => Encode Utf8'
 [Text.Encoding]::UTF8.GetBytes( $exampleText ) | ToByteCsv
