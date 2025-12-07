@@ -33,6 +33,7 @@ function Format-FmtHeader {
         > Fmt.H1 'Section 1'
     .example 
         > Get-Date | Format-FmtHeader -Foreground 'red'
+        > 'Get-Date | Format-FmtHeader -Foreground 'red'
     #>
     [Alias('Fmt.H1')]
     param( 
@@ -40,10 +41,15 @@ function Format-FmtHeader {
         [object] $InputObject,
 
         [Alias('Fg')]
-        [object] $Foreground = '#4169e1'
+        [object] $Foreground = '#4169e1',
+
+        [Alias('Newlines', 'NL')]
+        [int] $PadLines = 0 
     )
     process { 
-        Join-String -f '## {0}' -InputObject $InputObject
+        $suffixes = "`n" * $PadLines -join ''
+        
+        Join-String -f '## {0}' -InputObject $InputObject -op $Suffixes -os $Suffixes
             | Write-Host -fg $Foreground
     }
 }
@@ -83,7 +89,6 @@ function Format-FmtTableRow {
         $Columns | Join-String -f '{0}' -sep ' | ' -op '| ' -os ' |'
             # | Write-Host -fg $Foreground
     }
-
 }
 function Format-FmtTable {
     <#

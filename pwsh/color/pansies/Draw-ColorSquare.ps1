@@ -1,5 +1,6 @@
 #requires -Modules Pansies
 
+$OptionalModule = Join-Path $PSScriptRoot 'Formatting-Headers-UnorderedLists-etc.ps1'
 function Draw-ColorSquare {
     <#
     .notes
@@ -26,27 +27,27 @@ function Draw-ColorSquare {
     }
 }
 
-Fmt.H1 'A'
 
-gci fg: | Get-Random -Count 5 | %{ Draw-ColorSquare -Color $_ }
-    | Join-String -f '{0}' -sep ' | ' -op '| ' -os ' |'
+if( Test-Path $OptionalModule ) {
+    . ( Get-Item -ea 'stop' $OptionalModule )
+} else { 
+    "Skipping examples using optional module: ${OptionalModule}" | Write-Warning
+    return
+}
 
-Fmt.H1 'B'
+Fmt.H1 'Newlines'
 
-    gci fg: | Get-Random -Count 5 | %{ Draw-ColorSquare -Color $_ }
+gci fg: | Get-Random -Count 5 
+    | Draw-ColorSquare
 
-Fmt.H1 'C'
+Fmt.H1 'UL'
 
-gci fg: | Get-Random -Count 5 | Draw-ColorSquare
-| Join-String -f "`n - {0}" -sep '' 
+gci fg: | Get-Random -Count 5 
+    | Draw-ColorSquare
+    | Join-String -f "`n - {0}" -sep '' 
 
+Fmt.H1 'Quoted list '
 
-Fmt.H1 'D'
-
-gci fg: | Get-Random -Count 5 | Draw-ColorSquare
-| Fmt.UL    
-
-Fmt.H1 'E'
 
 
 # Gci fg:\ | Get-random -Count 1 | %{ 
