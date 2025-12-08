@@ -26,15 +26,23 @@ function _Format-CommandToPrefix {
 }
 function _Format-ColorizeCommandPrefix {
     param( 
+        [object[]] $GradientList
     )
 
     $all_commands = @( $Input ) 
     $prefix_list = $all_commands | _Format-CommandToPrefix | Sort-Object -Unique
 
-    $cur_grads = ( _New-Gradients -Steps $prefix_list.Count -ColorSpace 'Lab' ).GreenBlue
+    if( $gradientList.count -ge 3 ) { 
+        $cur_grads = $gradientList
+        if( $gradientList.count -lt $prefix_list.count ) { 
+            throw "Not enough gradients supplied. Supplied: $($gradientList.count), Needed: $($prefix_list.count)"
+        }
+    } else {
+        $cur_grads = ( _New-Gradients -Steps $prefix_list.Count -ColorSpace 'Lab' ).TomatoOrchid
+    }
 
-    $i = 0;
-    $color_map = @{}
+    # $i = 0;
+    # $color_map = @{}
     # foreach( $key in $prefix_list ) {
     #     $color_map[ $key ] = $cur_grads[ $i ] 
     #     $i++
@@ -44,21 +52,29 @@ function _Format-ColorizeCommandPrefix {
     $color_map = @{}; 
     foreach( $i in 0..($prefix_list.Length -1) ) { 
         [string] $curKey =  $prefix_list[$i]
-        $curKey | Write-Host -fg orange
+        # $curKey | Write-Host -fg orange
         $color_map[ $curKey ] = $cur_grads[ $i ]
         #       $color_map[ $key ] = $cur_grads[ $i ] 
         #     $i++
     }
-    $color_map
+    # $color_map
 
 
-    $color_map.GetEnumerator() | ConvertTo-Json -depth 0 | ft -auto | out-string | Write-host -fg 'gray40' -bg 'gray10'
+    # $color_map.GetEnumerator() | ConvertTo-Json -depth 0 | ft -auto | out-string | Write-host -fg 'gray40' -bg 'gray10'
 
-    wait-debugger
-    $all_commands 
-        | Join-String -f "`n{0}" -p {
-            $_
-        }
+    $all_commands | %{
+        $prefix, $rest = $_.Name -split '-', 2
+        $fg = $color_map[ $prefix ] ?? 'magenta'
+        @(
+            New-Text -fg $fg -Obj $Prefix
+            "-${rest}"
+        ) | Join-String -sep ''
+    }
+    # wait-debugger
+    # $all_commands 
+    #     | Join-String -f "`n{0}" -p {
+    #         $_
+    #     }
     # $prefix_list
 
     
@@ -76,7 +92,8 @@ $prefix_list = @(
 $cur_grads = _New-Gradients -Steps $prefix_list.count -ColorSpace 'Lab'
 $cmd_list 
     | _Format-ColorizeCommandPrefix 
-
+    
+$cmd_list | _Format-ColorizeCommandPrefix
 @'
 example:
     $cur_grads = _New-Gradients -Steps 7 -ColorSpace 'Lab'
@@ -85,4 +102,11 @@ example:
     
     ( _New-Gradients -Steps 48).GreenBlue
 
+    $cmd_list | _Format-ColorizeCommandPrefix
 '@ |Write-Host -fg 'magenta'
+
+"`n`n ------ Sort: None ------ `n`n" | Write-Host -fg 'orange'
+gcm -Module mintils | _Format-ColorizeCommandPrefix
+
+"`n`n ------ Sort: Name ------ `n`n" | Write-Host -fg 'orange'
+gcm -Module mintils | Sort Name | _Format-ColorizeCommandPrefix
