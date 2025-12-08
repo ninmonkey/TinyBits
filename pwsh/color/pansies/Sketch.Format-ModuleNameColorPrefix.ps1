@@ -17,6 +17,22 @@ function _New-Gradients {
     [PSCustomObject]$grads
 }
 
+function _Object {
+    [CmdletBinding()]
+    param(
+        [Parameter(ValueFromPipeline,mandatory)]
+        [object] $InputObject
+        # [Parameter(ValueFromPropertyName)]
+        # [string] $Name
+    )
+    process {
+        [pscustomobject]@{
+            PSTypeName = 'Sketch.StringObject'
+            Name = ( $InputObject)?.ToString() ?? '<null>'
+        }
+    }
+}
+
 function _Format-CommandToPrefix {
     param()
     process { 
@@ -110,3 +126,17 @@ gcm -Module mintils | _Format-ColorizeCommandPrefix
 
 "`n`n ------ Sort: Name ------ `n`n" | Write-Host -fg 'orange'
 gcm -Module mintils | Sort Name | _Format-ColorizeCommandPrefix
+
+
+($last_gcm ??= gcm -Module Pester | Sort Name ) 
+    | _Format-ColorizeCommandPrefix 
+    | _Object
+    | Fw -Col 3
+    
+($last_gcm ??= gcm -Module Pester | Sort Name ) 
+    | _Format-ColorizeCommandPrefix 
+    | _Object
+    | Fw -AutoSize
+
+( gcm -Module Pester | Sort Name ) | _Format-ColorizeCommandPrefix | Join-String -sep ', '
+
