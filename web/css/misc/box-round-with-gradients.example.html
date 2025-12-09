@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Preview: box-round-with-gradients</title>
+    <link rel="stylesheet" href="./base.css">
+    <link rel="stylesheet" href="./box-round-with-gradients.css">
+</head>
+
+<body>
+    <style type="text/css">
+        .box-round {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .box-gradient {
+            background: linear-gradient(135deg, #f06, transparent);
+        }
+
+        h1 {
+            animation: blur-out 700ms alternate infinite;
+        }
+    </style>
+    <nav>
+        <ul>
+            <li><a href=".">Go Back ⮥</a></li>
+            <li><a href="https://codepen.io/tribex/pen/wmjRNe">Original codepen</a></li>
+        </ul>
+    </nav>
+    <section>
+        <div class="fancy-box-wrapper">
+            <div class="fancy-box image"></div>
+            <div class="fancy-box gradient"></div>
+            <div class="fancy-box shaped"></div>
+        </div>
+    </section>
+</body>
+
+</html>

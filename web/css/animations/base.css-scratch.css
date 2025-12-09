@@ -1,0 +1,52 @@
+img {
+    min-width: 100px;
+    min-height: 100px;
+    outline: 2px solid hsl(0, 0%, 50%);
+}
+
+h1:first-of-type {
+    transform: rotateY(.1turn);
+    animation: panicSpinText 4s ease-in-out infinite alternate;
+}
+
+h1 {
+    transform: rotateY(.1turn);
+    animation: panicSpinText 300ms ease-in-out infinite alternate;
+    animation: none;
+}
+
+
+h1 {
+    &.spin-single {
+        animation: spin-single 1s ease-in-out both alternate;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        color: rgba(230, 166, 107, 0.986);
+        background-color: var(--color-bg);
+    }
+
+    &:where(.spin-single-with-perspective, .spin-single-with-perspective-2) {
+        --color-bg: hsla(.5turn 45% 78% / 0.9164);
+        background-color: var(--color-bg);
+
+        animation: spin-single-with-perspective 1s ease-in-out both alternate;
+        animation-duration: 1.7s;
+        animation-iteration-count: infinite;
+
+        transform-origin: 50% 50%;
+        transform: rotate3d(1, 1, 0, 45deg);
+    }
+
+    &.spin-single-with-perspective-2 {
+        --color-bg: hsla(-.1turn 45% 78% / 0.9164);
+        background-color: var(--color-bg);
+
+        animation: spin-single-with-perspective-2 1s ease-in-out both alternate;
+        animation-duration: 1.7s;
+        animation-duration: 4.7s;
+        animation-iteration-count: infinite;
+
+        transform-origin: 0% 0%;
+        transform: rotate3d(1, 1, 0, 45deg);
+    }
+}
