@@ -113,7 +113,7 @@ function TinyBits.Get-WingetPackageInfo {
 
 
 
-            'more'
+            write-warning 'Sketch, wip... '
             ','
             # filter only [1] "key: value" pairs, and [2] url/homepage links
             @($out.ForEach({
