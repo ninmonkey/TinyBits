@@ -1,0 +1,22 @@
+
+
+groups:
+- name: 'misc.dump'
+  text: '✓ ✔ ✕ ✖ ★ ☆ ☀ ☁ ☂ ☃ ☄ ☎ ☏ ⌚ ⌛ ⌨ ⍟ ⍢ ⍣ ⍤ ⍥ ⍦ ⍧ ⍨ ⍩ ⍪ ⍫ ⍬ ⍭ ⍮ ⍯ ⍰ ⍱ ⍲ ⍳ ⍴ ⍵ ⍶ ⍷ ⍸ ⍹ ⍺ ⎔ ⎕ ⎖ ⎗ ⎘ ⎙ ⎚ ⎛ ⎜ ⎝ ⎞ ⎟ ⎠ ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮ ⑯ ⑰ ⑱ ⑲ ⑳"'
+- name: 'word.delimiter'
+  text: ' ·⁞⇢⇽┐▂▸'
+  example: |
+    AppData ⁞ Discord.lnk
+
+- name: 'semantic.filename'
+  text: '📁👨🍴🐒🦍🏃‍♂️🚀🧪🎨🐛💻⚙'
+  example: |
+    🍴 fork
+    🐛 testing
+    🧪 experiment
+    🏠 user's home
+    📁 collection
+    👨 username
+      repoName
+
+    📁 Pwsh\👨SeeminglScience\ClassExplorer
