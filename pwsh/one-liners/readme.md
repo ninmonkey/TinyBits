@@ -43,3 +43,11 @@ $HistFileName = 'open-editors-stack.md'; ( (Get-Clipboard -Raw) -split '\r?\n' |
 ```ps1
 $HistFileName = 'paths-stack.md'; ( Get-Location | gi -ea 0 -ev 'lastHistError' | Sort-Object LastWriteTime -Descending | % FullName ) | Add-content -Path ( $histFileFullName = (Join-Path 'H:\data\2025\History.📁' $HistFileName ) ) -PassThru;  New-Hyperlink -uri $histFileFullName $HistFileName  | Join-String -f "{0}" -op ( 'Saving path[s] history [2025-11-iter1] ' | New-Text -fg 'gray40' -bg 'gray20' ) | write-host -fg gray30 -bg gray15 ; $lastHistError | Join-String -sep "`n" | write-host -fg 'salmon';
 ```
+
+### Quickly render `0x4`: History with Syntax
+
+using `bat` 
+
+```ps1
+Get-History | Sort-object -Unique -p CommandLine | %{  
+   ( $_.CommandLine | Join-String -op "# Id: $( $_.Id )`n" ) | bat -l ps1 --color=always | Out-Default }
