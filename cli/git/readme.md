@@ -1,6 +1,9 @@
 [Back Up ⮥: CLI](./../README.md) [Back Up ⮥: Root](./../../README.md)
 
 - [`git`](#git)
+  - [`git tag`](#git-tag)
+    - [misc examples](#misc-examples)
+    - [annotated tag](#annotated-tag)
   - [`git log` with `--grep` / `--grep-reflog`](#git-log-with---grep----grep-reflog)
   - [`git grep` searching](#git-grep-searching)
     - [Show total matches per file](#show-total-matches-per-file)
@@ -15,7 +18,44 @@ note: Similar sounding commands are different
 > [!NOTE]
 > `git log --grep` and `git grep`
 
+top level docs:
+- [`git tag`](https://git-scm.com/docs/git-tag) [examples](https://git-scm.com/docs/git-tag#_examples)
+- [`git grep`](https://git-scm.com/docs/git-grep) [examples](https://git-scm.com/docs/git-grep#_examples)
+- [`git log`](https://git-scm.com/docs/git-log) [examples](https://git-scm.com/docs/git-log#_examples)
+
+
+## `git tag`
+
+```ps1
+git --no-pager tag --list
+
+git tag -a 'tag_name' -m 'message'
+```
+### misc examples
+
+Select a few tags, and show the 10 most recent commits for each
+```ps1
+( $pk_version = git --no-pager tag --list | fzf -m )
+foreach($cur in $pk_version ) { 
+    $cur | Pansies\Write-Host -bg 'salmon' -fg 'steelblue4'
+    git --no-pager log $cur --oneline -n 10
+}
+```
+
+
+### annotated tag
+
+```ps1
+> git tag -a 'tag_name' -m 'message'
+> git push origin 'tag_name'
+```
+
 ## `git log` with `--grep` / `--grep-reflog`
+
+docs:
+- [`git tag`](https://git-scm.com/docs/git-tag) [examples](https://git-scm.com/docs/git-tag#_examples)
+- [`git grep`](https://git-scm.com/docs/git-grep) [examples](https://git-scm.com/docs/git-grep#_examples)
+- [`git log`](https://git-scm.com/docs/git-log) [examples](https://git-scm.com/docs/git-log#_examples)
 
 ```ps1
 🐒> git --no-pager log --oneline --grep="release"
@@ -25,8 +65,8 @@ note: Similar sounding commands are different
 ## `git grep` searching
 
 docs:
-- [`git grep`](https://git-scm.com/docs/git-grep)
-- [`git log`](https://git-scm.com/docs/git-log)
+- [`git grep`](https://git-scm.com/docs/git-grep) [examples](https://git-scm.com/docs/git-grep#_examples)
+- [`git log`](https://git-scm.com/docs/git-log) [examples](https://git-scm.com/docs/git-log#_examples)
 
 ```ps1
 🐒> git grep --perl-regexp --ignore-case 'unicode'
