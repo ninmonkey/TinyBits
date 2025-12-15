@@ -1,11 +1,11 @@
 ﻿#requires -Modules pansies
 #requires -PSEdition Core
 
-# simple lazy cache ( when dotsourced )
+# If you dotsource the script, '??=' will cache the response
 $resp ??= Invoke-RestMethod -Uri ( [uri] $url = 'https://www.reddit.com/r/PowerBI/rising/.json' ) -HttpVersion 3
-$json = $resp.data.children.data
 
-function __renderDisplay {
+function _renderDisplay {
+    # Ansi color as a single line
     param( [object] $Obj )
     $str_flair = $Obj.link_flair_text |  New-Text -bg $Obj.link_flair_background_color
     $str_score = @(
@@ -17,7 +17,8 @@ function __renderDisplay {
 
     "${str_flair} ${str_score}"
 }
-function __renderDisplay2 {
+function _renderDisplay2 {
+    # Ansi color as multiple lines
     param( [object] $Obj )
     $str_flair = $Obj.link_flair_text |  New-Text -bg $Obj.link_flair_background_color
     $str_score = @(
@@ -36,16 +37,24 @@ function __renderDisplay2 {
     ) | Join-String -sep "`n"
 }
 
-$ParsedJsonExtra = $json | %{
+filter Format-RedditResponse {
+    # drops a bunch of properties, and adds some for rendering
     $cur = $_
     # not optimal, but good enough for here.
-    $cur | Select-Object -ea ignore -p 'Display', Subreddit, author, author_flair_richtext, author_fullname, score, num_comments, title, url, permalink, is_*, selftext, selftext_html, view_count, discussion_type, name, category,created_utc, link_*, pinned, subreddit_*, thumbnail*
+    $cur
+        | Select-Object -ea ignore -p Display, Subreddit, author, author_flair_richtext, author_fullname,
+            score, num_comments, title, url, permalink, is_*, selftext, selftext_html, view_count, discussion_type,
+                name, category,created_utc, link_*, pinned, subreddit_*, thumbnail*
         | Add-Member -Force -PassThru -NotePropertyMembers @{
-            Display  = __renderDisplay $_
-            Display2 = __renderDisplay2 $_
+            Display    = _renderDisplay $_
+            Display2   = _renderDisplay2 $_
+            DisplayUrl = Pansies\New-Hyperlink -Uri $_.url -obj $_.title
         }
 
+}
 
-    }
+$json   = $resp.data.children.data
+$parsed = $json | Format-RedditResponse
 
-$ParsedJsonExtra | ft Display, author, title, selftext -GroupBy subreddit
+$parsed | Join-String Display2 "`n`n"
+$parsed | Format-Table Display, author, title -GroupBy Subreddit
